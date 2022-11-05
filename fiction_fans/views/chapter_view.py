@@ -1,4 +1,5 @@
-from .models import FictionChapter
+from ..models import FictionChapter
+from django.views import generic
 
 # Create your views here.
 

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Story
+from .models import FictionTitle, FictionChapter
 
 # Register your models here.
-admin.site.register(Story)
+admin.site.register(FictionChapter)
+admin.site.register(FictionTitle)

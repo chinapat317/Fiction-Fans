@@ -15,7 +15,7 @@ class FictionTitle(models.Model):
 class FictionChapter(models.Model):
     title = models.CharField(max_length=255)
     content = EditorJsField()
-    novel_title = models.ForeignKey(NovelTitle, on_delete=models.CASCADE)
+    novel_title = models.ForeignKey(FictionTitle, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return f"{self.title} is chapter of {self.novel_title}"
