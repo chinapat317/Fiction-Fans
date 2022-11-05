@@ -1,1 +1,1 @@
-from .story import Story
+from .fiction_model import FictionModel, FictionChapter
