@@ -1,10 +1,11 @@
+"""Create the fiction and add mutiple chapter to fiction."""
 from django.db import models
-from django.utils import timezone
 from django_editorjs import EditorJsField
 
 # Create your models here.
     
 class FictionTitle(models.Model):
+    """Create fiction that contain fiction's title and created date/time."""
     title = models.CharField(max_length=255)
     pub_date = models.DateTimeField(auto_now_add=True)
 
@@ -13,9 +14,14 @@ class FictionTitle(models.Model):
 
 
 class FictionChapter(models.Model):
+    """
+    Create a chapter for fiction that contain chapter's title
+    and chapter's content.
+    Connect each chapter to a single fiction by using ForeignKey.
+    """
     title = models.CharField(max_length=255)
     content = EditorJsField()
-    novel_title = models.ForeignKey(FictionTitle, on_delete=models.CASCADE)
+    fiction_title = models.ForeignKey(FictionTitle, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return f"{self.title} is chapter of {self.novel_title}"
+        return f"{self.fiction_title}: {self.title}"
