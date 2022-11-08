@@ -4,9 +4,11 @@ from django.views import generic
 
 # Create your views here.
 
+
 class HomePage(generic.ListView):
-    template_name = "homepage.html"
-    context_object_name = 'fictions'
+    """Create view for homepage list all fiction's title."""
+    template_name = "fiction_fans/homepage.html"
+    context_object_name = "fictions"
 
     def get_queryset(self):
         return FictionTitle.objects.all()
