@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="flex mt-16">
+    <div class="flex font-bold text-3xl items-center justify-center">
+        {{ fictionchapter.fiction_title }}
+    </div>
+</div>
+<br>
+<div class="flex mt-16">
+    <div class="flex font-bold text-3xl items-center justify-center">
+        <section id="chapter-body"></section>
+        <script>
+            window.addEventListener(
+                "DOMContentLoaded", () => {
+                    const chapterBody = document.getElementById("chapter-body");
+                    console.log("{{ fictionchapter.content | escapejs }}");
+                    let body = JSON.parse("{{ fictionchapter.content | escapejs }}");
+                    let block = body.blocks;
+                    console.log(block.length);
+                    for (let i = 0; i <= block.length; i++) {
+                        console.log(block[i], i);
+                        switch (block[i].type) {
+                            case "Header":
+                                let head = document.createElement(`h${block[i].data.level}`);
+                                head.textContent = block[i].data.text;
+                                chapterBody.appendChild(head);
+                                break;
+                            case "Image":
+                                let div = document.createElement("div");
+                                let image = document.createElement("img");
+                                let caption = document.createElement("small");
+                                image.src = `${block[i].data.file.url}`;
+                                image.style = "margin-top:10px;";
+                                image.height = 200;
+                                image.width = 200;
+                                caption.textContent = block[i].data.caption;
+                                caption.style = "margin-top:5px;";
+                                div.appendChild(image);
+                                div.appendChild(caption);
+                                div.style = "width:39%;display:grid;place-items:center";
+                                chapterBody.appendChild(div);
+                                break;
+                            case "paragraph":
+                                const text = document.createElement("p");
+                                text.innerHTML = block[i].data.text;
+                                chapterBody.appendChild(text);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            );
+        </script>
+    </div>
+</div>
+{% endblock content %}

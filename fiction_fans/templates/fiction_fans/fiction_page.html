@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ fiction.title }}</h1>
+<div class="flex mt-16 space-y-32">
+    <div class="flex flex-col space-y-2">
+        {% for chapter in chapters %}
+        <div class="">
+            <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
+                <h1 class="p-3 rounded  text-3xl font-bold flex text-center text-blue-600 items-center justify-center">
+                    {{ chapter.title }}
+                </h1>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
