@@ -2,7 +2,7 @@
 {% block content %}
 <div class="flex mt-16">
     <div class="flex font-bold text-3xl items-center justify-center">
-        {{ chapter.title }}
+        {{ fictionchapter.fiction_title }}
     </div>
 </div>
 <br>
@@ -13,8 +13,8 @@
             window.addEventListener(
                 "DOMContentLoaded", () => {
                     const chapterBody = document.getElementById("chapter-body");
-                    console.log("{{ chapter.content | escapejs }}");
-                    let body = JSON.parse("{{ chapter.content | escapejs }}");
+                    console.log("{{ fictionchapter.content | escapejs }}");
+                    let body = JSON.parse("{{ fictionchapter.content | escapejs }}");
                     let block = body.blocks;
                     console.log(block.length);
                     for (let i = 0; i <= block.length; i++) {
