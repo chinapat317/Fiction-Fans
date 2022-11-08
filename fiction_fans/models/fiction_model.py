@@ -4,6 +4,7 @@ from django_editorjs import EditorJsField
 
 # Create your models here.
     
+
 class FictionTitle(models.Model):
     """Create fiction that contain fiction's title and created date/time."""
     title = models.CharField(max_length=255)
