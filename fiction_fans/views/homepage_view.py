@@ -1,17 +1,12 @@
 """Create view for web homepage."""
-from django.shortcuts import render
 from ..models.fiction_model import FictionTitle
+from django.views import generic
 
 # Create your views here.
 
-def homepage(request):
-    """
-    Create view for web homepage.
-    Contain all fiction and display in homepage.
-    """
+class HomePage(generic.ListView):
     template_name = "homepage.html"
-    fictions = FictionTitle.objects.all()
-    context = {
-        "fictions": fictions,
-    }
-    return render(request, template_name, context=context)
+    context_object_name = 'fictions'
+
+    def get_queryset(self):
+        return FictionTitle.objects.all()
