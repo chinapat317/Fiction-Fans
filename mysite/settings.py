@@ -32,14 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'fiction_fans.apps.FictionFansConfig',
-    'django_editorjs',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "fiction_fans.apps.FictionFansConfig",
+    "django_editorjs",
 ]
 
 MIDDLEWARE = [
