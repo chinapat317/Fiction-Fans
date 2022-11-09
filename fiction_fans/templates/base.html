@@ -66,9 +66,23 @@
             }
             </style>
     </head>
+<<<<<<< HEAD
     <nav>
         <div class="logo">
             <a href="{% url 'fiction_fans:homepage' %}">Fiction Fans</a>
+=======
+    <body>
+        <div class="flex flex-col mx-auto container justify-center items-center">
+            <div id="navigation-bar" class="flex space-x-3 text-lg font-bold p-4 bg-blue-300 w-full text-center justify-lef t text-blue-800 rounded-md shadow">
+                Fiction Fans
+                <a href="{% url 'fiction_fans:homepage' %}">Home</a>
+                <a href="{% url 'fiction_fans:fiction_create' %}">Create Fiction</a>
+                <a href="{% url 'fiction_fans:chapter_create' %}">Create Chapter</a>
+            </div>
+            <div id="content">
+                {% block content %}{% endblock content %}
+            </div>
+>>>>>>> create-edit-system
         </div>
         <div class="home">
             <a href="{% url 'fiction_fans:homepage' %}">Home</a>
