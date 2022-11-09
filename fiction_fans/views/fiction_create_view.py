@@ -1,9 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse
-from .homepage_view import HomePage
-# from .fiction_view import fiction_view, ChapterView
+from django.http import HttpResponseRedirect
 from ..forms.fiction_form import FictionForm, ChapterForm
-from ..models.fiction_model import FictionTitle, FictionChapter
 
 # Create your views here.
 
@@ -16,8 +14,8 @@ def create_fiction(request):
     }
     if request.method == "POST":
         if form.is_valid():
-            form.save()
-            return redirect("/fiction/")
+            fiction = form.save()
+            return HttpResponseRedirect(reverse("fiction_view", args=(fiction.id,)))
     return render(request, template_name, context=context)
 
 
@@ -29,6 +27,6 @@ def create_chapter(request):
     }
     if request.method == "POST":
         if form.is_valid():
-            form.save()
-            return redirect("/fiction/")
+            chapter = form.save()
+            return HttpResponseRedirect(reverse("chapter_view", args=(chapter.novel_title.id, chapter.id,)))
     return render(request, template_name, context=context)
