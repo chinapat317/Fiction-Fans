@@ -1,32 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<<<<<<< HEAD
 <div>
     <h1>{{ fiction.title }}</h1>
-=======
-<h1>{{ fiction.title }}</h1>
-<div class="flex mt-16 space-y-32">
-    <div class="flex flex-col space-y-2">
-        {% for chapter in chapters %}
-        <div class="">
-            <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
-                <h1 class="p-3 rounded  text-3xl font-bold flex text-center text-blue-600 items-center justify-center">
-                    {{ chapter.title }}
-                </h1>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-    <div class="pl-3 text-lg text-blue-600">
-        <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}">
-            Edit
-        </a>
-    </div>
->>>>>>> create-edit-system
 </div>
 <ol>
     {% for chapter in chapters %}
    <li><a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}" style="font-size: 20px; color: black; text-decoration: none;">{{ chapter.title }}</a></li>
     {% endfor %}
 </ol>
+<div class="pl-3 text-lg text-blue-600">
+    <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}">Edit</a>
+</div>
 {% endblock content %}
