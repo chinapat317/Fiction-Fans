@@ -1,7 +1,7 @@
 """Create view for reading fiction's story."""
 from django.shortcuts import render
-from ..models.fiction_model import FictionTitle, FictionChapter
 from django.views import generic
+from ..models.fiction_model import FictionTitle, FictionChapter
 
 # Create your views here.
 
