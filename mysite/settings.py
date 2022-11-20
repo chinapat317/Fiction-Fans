@@ -77,8 +77,9 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
 
-LOGIN_REDIRECT_URL = '/fiction/'
-LOGOUT_REDIRECT_URL = '/fiction/'
+LOGIN_REDIRECT_URL = "/fiction/"
+
+LOGOUT_REDIRECT_URL = "/fiction/"
 
 
 # Database
@@ -116,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Bangkok'
+TIME_ZONE = "Asia/Bangkok"
 
 USE_I18N = True
 
@@ -136,3 +137,7 @@ STATIC_DIR = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = "/fiction/media/"
+
+MEDIA_URL = "/fiction/media/"

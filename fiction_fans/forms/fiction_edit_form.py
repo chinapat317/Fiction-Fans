@@ -11,4 +11,4 @@ class FictionForm(ModelForm):
 class ChapterForm(ModelForm):
     class Meta:
         model = FictionChapter
-        fields = ["title", "content", "fiction_title"]
+        fields = ["title", "content"]

@@ -20,10 +20,11 @@ from django.urls import include, path
 from django.conf.urls.static import static
 from .views import signup
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('fiction/', include("fiction_fans.urls")),
-    path('', generic.RedirectView.as_view(url="/fiction/")),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('signup/', signup, name='signup'),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    path("fiction/", include("fiction_fans.urls")),
+    path("", generic.RedirectView.as_view(url="/fiction/")),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("signup/", signup, name="signup"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

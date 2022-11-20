@@ -21,7 +21,21 @@ class FictionChapter(models.Model):
     Connect each chapter to a single fiction by using ForeignKey.
     """
     title = models.CharField(max_length=255)
-    content = EditorJsField()
+    content = EditorJsField(
+        editorjs_config={
+            "tools": {
+                "Image": {
+                    "config": {
+                        "endpoints": {
+                            "byFile": "/fiction/imageUPload/",
+                            "byUrl": "/fiction/imageUPload/",
+                        },
+                        "additionalRequestHeaders": [{"Counter-Type": 'multipart/form-data'}]
+                    }
+                }
+            }
+        }
+    )
     fiction_title = models.ForeignKey(FictionTitle, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
