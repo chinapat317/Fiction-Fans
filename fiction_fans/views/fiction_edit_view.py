@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from ..forms.fiction_edit_form import FictionForm, ChapterForm
 from ..models.fiction_model import FictionTitle, FictionChapter
 
@@ -17,7 +18,7 @@ def edit_fiction(request, fiction_id):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            return redirect("/fiction/{}/".format(fiction.id))
+            return HttpResponseRedirect("/fiction/{}/".format(fiction.id))
     return render(request, template_name, context=context)
 
 
