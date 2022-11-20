@@ -55,4 +55,9 @@
         Edit
     </a>
 </div>
+<div class="pl-3 text-lg text-blue-600">
+    <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}">
+        Delete
+    </a>
+</div>
 {% endblock content %}
