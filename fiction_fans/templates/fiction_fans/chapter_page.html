@@ -4,6 +4,7 @@
         <h1>{{ fictionchapter.title }}</h1>
     </div>
 <br>
+
 <div class="flex text-1xl items-center justify-center">
     <section id="chapter-body"></section>
         <script>
@@ -50,14 +51,28 @@
             );
         </script>
 </div>
+
 <div class="pl-3 text-lg text-blue-600">
     <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}">
         Edit
     </a>
 </div>
+
 <div class="pl-3 text-lg text-blue-600">
     <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}">
         Delete
     </a>
+</div>
+
+<div>
+    <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+    {% csrf_token %}
+        <fieldset>
+        <p>comment session</p>
+        <input type="text" id="comment_text" name="comment_text">
+        </fieldset>
+        <input type="submit" value="comment">
+    </form>
+>>>>>>> comment
 </div>
 {% endblock content %}
