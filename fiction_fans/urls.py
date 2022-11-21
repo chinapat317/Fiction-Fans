@@ -2,9 +2,11 @@ from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 from .views import (HomePage
                     , fiction_view
+                    , upload_image_view
                     , create_chapter
                     , create_fiction
                     , edit_fiction
+                    , edit_chapter
                     , comment
                     , ChapterView
                     , delete_chapter
@@ -20,7 +22,7 @@ urlpatterns = [
     path("<int:fiction_pk>/<int:chapter_pk>/", ChapterView.as_view(), name="chapter_view"),
     path("createchap/", create_chapter, name="chapter_create"),
     path("<int:fiction_id>/<int:chapter_id>/edit/", edit_chapter, name="chapter_edit"),
-    path("<int:fiction_id>/<int:chapter_id>/del/", fiction_delete_view.delete_chapter, name="chapter_del"),
-    path("imageUPload/", csrf_exempt(fiction_page_view.upload_image_view)),
+    path("<int:fiction_id>/<int:chapter_id>/del/", delete_chapter, name="chapter_del"),
+    path("imageUPload/", csrf_exempt(upload_image_view)),
     path("<int:fiction_pk>/<int:chapter_pk>/comment/", comment, name="chapter_comment"),
 ]
