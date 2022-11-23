@@ -26,7 +26,7 @@ SECRET_KEY = config("SECRET_KEY", default="missing-secret-key", cast=str)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://fictionfans.azurewebsites.net', '127.0.0.1']
 
 
 # Application definition
