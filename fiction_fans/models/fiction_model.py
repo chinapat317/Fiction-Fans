@@ -2,6 +2,7 @@
 from django.db import models
 from django.conf import settings
 from django_editorjs import EditorJsField
+from django.utils import timezone
 
 # Create your models here.
     
@@ -10,10 +11,10 @@ class FictionTitle(models.Model):
     """Create fiction that contain fiction's title and created date/time."""
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    author = models.CharField(max_length=255,)
-    status = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
-    pub_date = models.DateTimeField(auto_now_add=True)
+    author = models.CharField(max_length=255, default="Anonymous")
+    status = models.CharField(max_length=255, default="ongoing")
+    description = models.CharField(max_length=255, default=" ")
+    pub_date = models.DateTimeField(auto_now_add=timezone.now())
 
     def __str__(self) -> str:
         return self.title
