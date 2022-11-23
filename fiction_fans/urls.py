@@ -10,7 +10,8 @@ from .views import (HomePage
                     , comment
                     , ChapterView
                     , delete_chapter
-                    , delete_fiction)
+                    , delete_fiction
+                    , Profile)
 
 app_name = "fiction_fans"
 urlpatterns = [
@@ -25,4 +26,5 @@ urlpatterns = [
     path("<int:fiction_id>/<int:chapter_id>/del/", delete_chapter, name="chapter_del"),
     path("imageUPload/", csrf_exempt(upload_image_view)),
     path("<int:fiction_pk>/<int:chapter_pk>/comment/", comment, name="chapter_comment"),
+    path("user/", Profile.as_view(), name="profile"),
 ]

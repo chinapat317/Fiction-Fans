@@ -15,7 +15,7 @@ def delete_fiction(request, fiction_id):
     }
     if request.method == "POST":
         fiction.delete()
-        return HttpResponseRedirect(HomePage)
+        return HttpResponseRedirect("/fiction/")
     return render(request, template_name, context=context)
 
 
