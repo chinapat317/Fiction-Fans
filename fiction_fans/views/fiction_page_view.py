@@ -1,7 +1,10 @@
 """Create view for reading fiction's story."""
 from django.shortcuts import render
-from ..models.fiction_model import FictionTitle, FictionChapter
 from django.views import generic
+from django.http import JsonResponse
+from django.core.files.storage import FileSystemStorage
+from django.views.decorators.csrf import requires_csrf_token
+from ..models.fiction_model import FictionTitle, FictionChapter
 
 # Create your views here.
 
@@ -32,3 +35,18 @@ def fiction_view(request, fiction_id):
         "chapters": chapters,
     }
     return render(request, template_name, context=context)
+
+
+@requires_csrf_token
+def upload_image_view(request):
+    file_request = request.FILES["image"]
+    file_system = FileSystemStorage()
+    filename = str(file_request).split(".")[0]
+    file = file_system.save(filename, file_request)
+    file_url = file_system.url(file)
+    return JsonResponse(
+        {
+            "success": 1,
+            "file": {"url": file_url},
+        }
+    )

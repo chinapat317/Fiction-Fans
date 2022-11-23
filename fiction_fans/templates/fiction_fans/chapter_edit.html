@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post" class="mt-16">
+    {% csrf_token %}
+    <div>
+        <h1>{{ form.title.label }} {{ form.title }}</h1>
+        <!-- <div>
+            {{ form.title }}
+        </div> -->
+    </div>
+    <div>
+        <h1>{{ form.content.label }}</h1>
+        <div>
+            {{ form.content | safe }}
+        </div>
+    </div>
+    <input type="submit" value="Submit">
+</form>
+{% endblock content %}

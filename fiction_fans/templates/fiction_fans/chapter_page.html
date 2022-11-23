@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="flex mt-16">
-    <div class="flex font-bold text-3xl items-center justify-center">
-        {{ fictionchapter.fiction_title }}
+    <div>
+        <h1>{{ fictionchapter.title }}</h1>
     </div>
-</div>
 <br>
-<div class="flex mt-16">
-    <div class="flex font-bold text-3xl items-center justify-center">
-        <section id="chapter-body"></section>
+
+<div>
+    <section id="chapter-body"></section>
         <script>
             window.addEventListener(
                 "DOMContentLoaded", () => {
@@ -52,6 +50,31 @@
                 }
             );
         </script>
-    </div>
+</div>
+
+<div">
+    <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}">Edit</a>
+    <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}">Delete</a>
+</div>
+
+<div>
+    <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+    {% csrf_token %}
+        <fieldset>
+        <p>comment session</p>
+        <textarea name="comment_text" id="comment_text"></textarea>
+        </fieldset>
+        <input type="submit" value="comment">
+    </form>
+</div>
+
+<!-- comment display section. -->
+<!-- will be change to user link -->
+<div id="content" class="comment_view">
+    {% for comment in fictionchapter.comment_set.all %}    
+        <h1>{{ comment.user.get_username }}</h1>
+        <p>{{ comment.text }}</p>
+        <date>{{ comment.comment_date }}</date>
+    {% endfor %}
 </div>
 {% endblock content %}

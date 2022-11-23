@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post" class="mt-16">
+    {% csrf_token %}
+    <div>
+        <h1>{{ form.title.label }}</h1>
+        <div class="border">
+            {{ form.title }}
+        </div>
+    </div>
+    <div>
+        <h1>{{ form.content.label }}</h1>
+        <div>
+            {{ form.content | safe }}
+        </div>
+    </div>
+    <!-- <div>
+        <h1>{{ form.novel_title.label }}</h1>
+        {{ form.fiction_title }}
+    </div> -->
+    <input type="submit" value="Submit">
+</form>
+{% endblock content %}
