@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="flex font-bold text-3xl items-center justify-center">
+    <div>
         <h1>{{ fictionchapter.title }}</h1>
     </div>
 <br>
 
-<div class="flex text-1xl items-center justify-center">
+<div>
     <section id="chapter-body"></section>
         <script>
             window.addEventListener(
@@ -52,16 +52,9 @@
         </script>
 </div>
 
-<div class="pl-3 text-lg text-blue-600">
-    <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}">
-        Edit
-    </a>
-</div>
-
-<div class="pl-3 text-lg text-blue-600">
-    <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}">
-        Delete
-    </a>
+<div">
+    <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}">Edit</a>
+    <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}">Delete</a>
 </div>
 
 <div>

@@ -1,21 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
-    <h1>{{ fiction.title }}</h1>
+    <h1>Title:  {{ fiction.title }}</h1>
+    <h1>Author:  {{ fiction.author }}</h1>
+    <h1>Status:  {{ fiction.status }}</h1>
+    <h1>Description:  {{ fiction.description }}</h1>
 </div>
-<ol>
-    {% for chapter in chapters %}
-    <li>
-        <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}" style="font-size: 20px; color: black; text-decoration: none;">
-            {{ chapter.title }}
-        </a>
-    </li>
-    {% endfor %}
-</ol>
-<div class="pl-3 text-lg text-blue-600">
+<div>
     <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}">Edit</a>
-</div>
-<div class="pl-3 text-lg text-blue-600">
     <a href="{% url 'fiction_fans:fiction_del' fiction.id %}">Delete</a>
+</div>
+<div>
+    <h1>Chapter List</h1>
+    <a href="{% url 'fiction_fans:chapter_create' %}">Create</a>
+    <ol>
+        
+        {% for chapter in chapters %}
+        <li>
+            <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
+                {{ chapter.title }}
+            </a>
+        </li>
+        {% endfor %}
+    
+    </ol>
 </div>
 {% endblock content %}
