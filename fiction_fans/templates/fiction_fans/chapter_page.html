@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-    <div>
-        <h1>{{ fictionchapter.title }}</h1>
+    <div style="text-align: center;">
+        <h1 style="color: #10b2f7; font-size: xx-large; font-family: serif; font-weight: bold;">{{ fictionchapter.title }}</h1>
+        <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}">
+            <button style="background-color:rgb(236, 155, 25); border: 3px solid #ed0e0e;">Edit</button>
+        </a>
+        <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}">
+            <button style="background-color:rgb(255, 0, 0); border: 3px solid #00000000;">Delete</button>
+        </a>
     </div>
 <br>
-
-<div>
-    <section id="chapter-body"></section>
+<div class="flex-container">
+    <div id="content" class="block" style="min-width:1000px; min-height:500px">
+        <section id="chapter-body"></section>
         <script>
             window.addEventListener(
                 "DOMContentLoaded", () => {
@@ -50,35 +56,30 @@
                 }
             );
         </script>
-</div>
-
-<div">
-    <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}">Edit</a>
-    <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}">Delete</a>
-</div>
-
-<div>
-    <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
-    {% csrf_token %}
-        <fieldset>
-        <p>comment session</p>
-        <textarea id="comment_text" name="comment_text"></textarea>
-        </fieldset>
-        <input type="submit" value="comment">
-    </form>
-</div>
-
-<!-- comment display section. -->
-<div id="content" class="scroll_view" style="background-color: aquamarine;">
-    {% for comment in fictionchapter.comment_set.all %}
-    <div>
-        <h1 style="color: darkblue;">{{ comment.user.get_username }}</h1>
-        <p style="color: darkcyan;">{{ comment.text }}</p>
-        <div style="text-align: right;">
-            <date style="color:blueviolet; ">{{ comment.comment_date }}</date>
-        </div>
-        <br>
     </div>
-    {% endfor %}
+    <div>
+        <div  id="content" class="scroll_view" style="background-color: aquamarine;">
+            {% for comment in fictionchapter.comment_set.all %}
+            <div>
+                <h1 style="color: darkblue;">{{ comment.user.get_username }}</h1>
+                <p style="color: darkcyan;">{{ comment.text }}</p>
+                <div style="text-align: right;">
+                    <date style="color:blueviolet; ">{{ comment.comment_date }}</date>
+                </div>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="background-color: blanchedalmond; width: 500px; height: 300px;">
+            <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+            {% csrf_token %}
+                <fieldset>
+                <p>comment session</p>
+                <textarea id="comment_text" name="comment_text"></textarea>
+                </fieldset>
+                <input type="submit" value="comment">
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock content %}

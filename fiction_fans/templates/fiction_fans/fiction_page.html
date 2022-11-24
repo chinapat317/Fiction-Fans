@@ -10,19 +10,16 @@
     <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}">Edit</a>
     <a href="{% url 'fiction_fans:fiction_del' fiction.id %}">Delete</a>
 </div>
-<div>
+<div class="single_line">
     <h1>Chapter List</h1>
-    <a href="{% url 'fiction_fans:chapter_create' fiction.id %}">Create</a>
-    <ol>
-        
-        {% for chapter in chapters %}
-        <li>
-            <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
-                {{ chapter.title }}
-            </a>
-        </li>
-        {% endfor %}
-    
-    </ol>
+    <a href="{% url 'fiction_fans:chapter_create' fiction.id %}" style="align-items: right;"><button style="background-color:cadetblue; border: 3px solid #555555;">Create</button></a>
+</div>
+<div class="scroll_view">
+    {% for chapter in chapters %}
+        <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
+            {{ chapter.title }}
+        </a>
+    {% endfor %}  
+</div>
 </div>
 {% endblock content %}

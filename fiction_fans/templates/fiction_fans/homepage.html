@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<div>
-    <h1>Hot!</h1>
+<div id="content" class="block" style="margin: 5% 15%;">
+    <h1 style="font-size: xx-large; font-family: Impact; color: rgb(255, 134, 5); margin: 0px 0px 0px 10px;">Hot!</h1>
     {% for fiction in fictions %}
     <ul style="list-style: none; align-items: center; display: inline-flex; margin: 30px auto; padding: 0px 100px;">
         <li>
@@ -12,8 +12,8 @@
     </ul>
     {% endfor %}
 </div>
-<div>
-    <h1>Recently!</h1>
+<div id="content" class="block" style="margin: 5% 15%;">
+    <h1 style="font-size: xx-large; font-family: Impact; color: rgb(255, 134, 5); margin: 0px 0px 0px 10px;">Recently!</h1>
     {% for fiction in fictions %}
     <ul style="list-style: none; align-items: center; display: inline-flex; margin: 30px auto; padding: 0px 100px;">
         <li>
