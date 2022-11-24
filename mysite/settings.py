@@ -144,4 +144,4 @@ MEDIA_ROOT = "/fiction/media/"
 
 MEDIA_URL = "/fiction/media/"
 
-CSRF_TRUST_ORIGINS = ['https://fictionfans.azurewebsites.net','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.fictionfans.azurewebsites.net','https://*.127.0.0.1']
