@@ -65,4 +65,13 @@
         <input type="submit" value="comment">
     </form>
 </div>
+<div id="content" class="scroll_view" style="background-color: aquamarine;">
+    {% for comment in fictionchapter.comment_set.all %}
+    <div>   
+        <h1 style="color: darkblue;">{{ comment.user.get_username }}</h1>
+        <p style="color: darkcyan">{{ comment.text }}</p>
+        <date style="color:blueviolet">{{ comment.comment_date }}</date>
+    </div>
+    {% endfor %}
+</div>
 {% endblock content %}

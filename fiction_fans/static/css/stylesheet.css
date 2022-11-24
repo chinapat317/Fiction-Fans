@@ -54,3 +54,27 @@ nav {
     border: 2px solid red;
     overflow: auto;
 }
+
+#content.scroll_view {
+    height: 300px; 
+    width: 500px; 
+    overflow: scroll;
+}
+
+#content.scroll_view h1 {
+    font-family: cursive;
+    font-size: large;
+    font-weight: 400;
+}
+
+#content.scroll_view p{
+    font-family: cursive;
+    font-size: medium;
+    font-weight: 200;
+}
+
+#content.scroll_view date{
+    font-family: cursive;
+    font-size: small;
+    font-weight: 100;
+}

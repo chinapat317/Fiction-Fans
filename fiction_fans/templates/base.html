@@ -19,10 +19,16 @@
             <a href="{% url 'fiction_fans:fiction_create' %}">Create Fiction</a>
             <a href="{% url 'fiction_fans:chapter_create' %}">Create Chapter</a>
         </div>
-        <div class="auth">
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'signup' %}">Register</a>
-        </div>
+        {% if user.is_authenticated %}
+            <div class="auth">
+                <h1> {{ user.get_username }} </h1>
+            </div>
+            {% else %}
+                <div class="auth">
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'signup' %}">Register</a>
+                </div>
+        {% endif %}
     </nav>
     <body>
             <div id="content">
