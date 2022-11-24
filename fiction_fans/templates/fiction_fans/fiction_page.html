@@ -12,7 +12,7 @@
 </div>
 <div>
     <h1>Chapter List</h1>
-    <a href="{% url 'fiction_fans:chapter_create' %}">Create</a>
+    <a href="{% url 'fiction_fans:chapter_create' fiction.id %}">Create</a>
     <ol>
         
         {% for chapter in chapters %}

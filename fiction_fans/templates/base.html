@@ -19,7 +19,7 @@
         </div>
         {% if user.is_authenticated %}
             <div class="auth">
-                <h1> {{ user.get_username }} </h1>
+                <a href="{% url 'fiction_fans:profile' %}">{{ user.get_username }}</a>
             </div>
             {% else %}
                 <div class="auth">
