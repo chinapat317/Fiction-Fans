@@ -143,3 +143,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = "/fiction/media/"
 
 MEDIA_URL = "/fiction/media/"
+
+CSRF_TRUST_ORIGINS = ['https://*.fictionfans.azurewebsites.net','https://*.127.0.0.1']
