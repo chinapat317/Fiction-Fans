@@ -62,25 +62,13 @@
     {% csrf_token %}
         <fieldset>
         <p>comment session</p>
-<<<<<<< HEAD
-        <textarea name="comment_text" id="comment_text"></textarea>
-=======
         <textarea id="comment_text" name="comment_text"></textarea>
->>>>>>> old-beta
         </fieldset>
         <input type="submit" value="comment">
     </form>
 </div>
-<<<<<<< HEAD
 
 <!-- comment display section. -->
-<!-- will be change to user link -->
-<div id="content" class="comment_view">
-    {% for comment in fictionchapter.comment_set.all %}    
-        <h1>{{ comment.user.get_username }}</h1>
-        <p>{{ comment.text }}</p>
-        <date>{{ comment.comment_date }}</date>
-=======
 <div id="content" class="scroll_view" style="background-color: aquamarine;">
     {% for comment in fictionchapter.comment_set.all %}
     <div>
@@ -91,7 +79,6 @@
         </div>
         <br>
     </div>
->>>>>>> old-beta
     {% endfor %}
 </div>
 {% endblock content %}

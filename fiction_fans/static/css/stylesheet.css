@@ -57,23 +57,6 @@ nav {
     overflow: auto;
 }
 
-<<<<<<< HEAD
-#content.comment_view {
-    height: 300px; 
-    width: 500px; 
-    /* background-color: aquamarine;  */
-    overflow: scroll;
-}
-
-#content.comment_view h1 {
-    font-family: cursive;
-    font-size: large;
-    font-weight: 400;
-    color: blueviolet;
-}
-
-#content.comment_view p{
-=======
 #content.scroll_view {
     height: 300px; 
     width: 500px; 
@@ -87,23 +70,13 @@ nav {
 }
 
 #content.scroll_view p{
->>>>>>> old-beta
     font-family: cursive;
     font-size: medium;
     font-weight: 200;
 }
 
-<<<<<<< HEAD
-#content.comment_view date{
-    font-family: cursive;
-    color: darkgray;
-    font-size: small;
-    font-weight: 100;
-}
-=======
 #content.scroll_view date{
     font-family: cursive;
     font-size: small;
     font-weight: 100;
 }
->>>>>>> old-beta
