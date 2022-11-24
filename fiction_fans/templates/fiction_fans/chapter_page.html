@@ -73,11 +73,12 @@
         <div style="background-color: blanchedalmond; width: 500px; height: 300px;">
             <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
             {% csrf_token %}
-                <fieldset>
-                <p>comment session</p>
-                <textarea id="comment_text" name="comment_text"></textarea>
+                <fieldset style="text-align: center;">
+                <h1 style="font-size: larger; font-weight:bold; font-family: cursive; color:#9e550c">comment session</h1>
+                <textarea id="comment_text" name="comment_text" rows="8" cols="50"></textarea>
+                <br>
+                <input type="submit" value="comment" style="background-color:rgb(209, 133, 10); border: 3px solid #9e550c; color: #2a084d;">
                 </fieldset>
-                <input type="submit" value="comment">
             </form>
         </div>
     </div>
