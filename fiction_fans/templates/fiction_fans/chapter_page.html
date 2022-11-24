@@ -60,17 +60,20 @@
     {% csrf_token %}
         <fieldset>
         <p>comment session</p>
-        <input type="text" id="comment_text" name="comment_text">
+        <textarea id="comment_text" name="comment_text"></textarea>
         </fieldset>
         <input type="submit" value="comment">
     </form>
 </div>
 <div id="content" class="scroll_view" style="background-color: aquamarine;">
     {% for comment in fictionchapter.comment_set.all %}
-    <div>   
+    <div>
         <h1 style="color: darkblue;">{{ comment.user.get_username }}</h1>
-        <p style="color: darkcyan">{{ comment.text }}</p>
-        <date style="color:blueviolet">{{ comment.comment_date }}</date>
+        <p style="color: darkcyan;">{{ comment.text }}</p>
+        <div style="text-align: right;">
+            <date style="color:blueviolet; ">{{ comment.comment_date }}</date>
+        </div>
+        <br>
     </div>
     {% endfor %}
 </div>
