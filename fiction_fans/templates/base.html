@@ -17,11 +17,24 @@
         <div class="home">
             <a href="{% url 'fiction_fans:homepage' %}">Home</a>
         </div>
+<<<<<<< HEAD
         <div class="auth">
             <a href="{% url 'fiction_fans:profile' %}">Profile</a>
             <a href="{% url 'login' %}">Login</a>
             <a href="{% url 'signup' %}">Register</a>
         </div>
+=======
+        {% if user.is_authenticated %}
+            <div class="auth">
+                <h1> {{ user.get_username }} </h1>
+            </div>
+            {% else %}
+                <div class="auth">
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'signup' %}">Register</a>
+                </div>
+        {% endif %}
+>>>>>>> old-beta
     </nav>
     <body>
             <div id="content">

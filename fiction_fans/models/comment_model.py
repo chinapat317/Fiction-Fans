@@ -8,4 +8,9 @@ class Comment(models.Model):
     chapter = models.ForeignKey(FictionChapter, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
+<<<<<<< HEAD
     comment_date = models.DateTimeField(auto_now_add=timezone.now())
+=======
+    comment_date = models.DateTimeField(auto_now_add=timezone.now())
+    
+>>>>>>> old-beta
