@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'fictionfans'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7605196F482E41D3A08FCD09A48043D3 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FD55BCDB484541739E9FC34BE91EFD64 }}
