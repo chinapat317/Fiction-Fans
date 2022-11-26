@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .homepage_view import HomePage
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from ..models.fiction_model import FictionTitle, FictionChapter
+from fiction_fans.models import FictionTitle, FictionChapter
 
 # Create your views here.
 
