@@ -25,7 +25,7 @@
 </div>
 {% endif %}
 <div style="padding: 10px; margin-top: 50px; margin-bottom: auto;">
-    Chapter List 
+    Chapter List
 </div>
 <div style="border: solid; padding: 20px;">
     <ol>
@@ -34,15 +34,18 @@
             <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
                 {{ chapter.title }}
             </a>
+                {% if chapter.average_rate %}
+                    <label>(point = {{ chapter.average_rate }})</label>
+                {% endif %}
         </li>
         {% endfor %}
     </ol>
 </div>
 {% if user.is_authenticated %}
-<div style="float: right; margin: 10px;">
-    <a href="{% url 'fiction_fans:chapter_create' fiction.id %}" style="border: solid;">
-        Create
-    </a>
-</div>
+    <div style="float: right; margin: 10px;">
+        <a href="{% url 'fiction_fans:chapter_create' fiction.id %}" style="border: solid;">
+            Create
+        </a>
+    </div>
 {% endif %}
 {% endblock content %}
