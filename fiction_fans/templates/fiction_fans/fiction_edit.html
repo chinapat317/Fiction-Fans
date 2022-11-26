@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-    <a href="{% url 'fiction_fans:fiction_view' fiction.id %}">Cancel</a>
-</form>
+<div style="padding: 10px;">
+    Edit {{ fiction.title }}
+</div>
+<div style="border: solid; padding: 20px;">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div style="float: right; margin-top: 30px;">
+            <input type="submit" value="Submit"  style="border: solid;">
+            <a href="{% url 'fiction_fans:fiction_view' fiction.id %}"  style="border: solid; margin-left: 10px;">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
 {% endblock content %}

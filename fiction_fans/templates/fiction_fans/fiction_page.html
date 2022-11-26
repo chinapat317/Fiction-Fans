@@ -1,25 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
-<div>
+<div style="padding: 10px;">
+    {{ fiction.title }}
+    <div style="float: right;">
+        <a href="{% url 'fiction_fans:profile' %}" style="margin-left: 10px;">
+            username
+        </a>
+    </div>
+</div>
+<div style="border: solid; padding: 20px;">
     <h1>Title:  {{ fiction.title }}</h1>
     <h1>Author:  {{ fiction.author }}</h1>
     <h1>Status:  {{ fiction.status }}</h1>
     <h1>Description:  {{ fiction.description }}</h1>
 </div>
-<div>
-    <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}">Edit</a>
-    <a href="{% url 'fiction_fans:fiction_del' fiction.id %}">Delete</a>
+{% if user.is_authenticated %}
+<div style="float: right; margin: 10px;">
+    <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}" style="margin-right: 10px; border: solid;">
+        Edit
+    </a>
+    <a href="{% url 'fiction_fans:fiction_del' fiction.id %}" style="border: solid;">
+        Delete
+    </a>
 </div>
-<div class="single_line">
-    <h1>Chapter List</h1>
-    <a href="{% url 'fiction_fans:chapter_create' fiction.id %}" style="align-items: right;"><button style="background-color:cadetblue; border: 3px solid #555555;">Create</button></a>
+{% endif %}
+<div style="padding: 10px; margin-top: 50px; margin-bottom: auto;">
+    Chapter List 
 </div>
-<div class="scroll_view">
-    {% for chapter in chapters %}
-        <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
-            {{ chapter.title }}
-        </a>
-    {% endfor %}  
+<div style="border: solid; padding: 20px;">
+    <ol>
+        {% for chapter in chapters %}
+        <li>
+            <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
+                {{ chapter.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ol>
 </div>
+{% if user.is_authenticated %}
+<div style="float: right; margin: 10px;">
+    <a href="{% url 'fiction_fans:chapter_create' fiction.id %}" style="border: solid;">
+        Create
+    </a>
 </div>
+{% endif %}
 {% endblock content %}

@@ -20,6 +20,7 @@
         {% if user.is_authenticated %}
             <div class="auth">
                 <a href="{% url 'fiction_fans:profile' %}">{{ user.get_username }}</a>
+                <a href="/accounts/logout/"><button type="button">Logout</button></a>
             </div>
             {% else %}
                 <div class="auth">
