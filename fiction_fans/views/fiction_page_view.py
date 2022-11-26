@@ -4,7 +4,7 @@ from django.views import generic
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import requires_csrf_token
-from ..models.fiction_model import FictionTitle, FictionChapter
+from fiction_fans.models import FictionTitle, FictionChapter
 
 # Create your views here.
 

@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from ..models import FictionChapter
+from fiction_fans.models import FictionChapter
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 import logging
