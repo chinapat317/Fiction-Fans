@@ -1,17 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{{ fiction.title }}</h1>
-<div class="flex mt-16 space-y-32">
-    <div class="flex flex-col space-y-2">
-        {% for chapter in chapters %}
-        <div class="">
-            <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
-                <h1 class="p-3 rounded  text-3xl font-bold flex text-center text-blue-600 items-center justify-center">
-                    {{ chapter.title }}
-                </h1>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
+<div>
+    <h1>Title:  {{ fiction.title }}</h1>
+    <h1>Author:  {{ fiction.author }}</h1>
+    <h1>Status:  {{ fiction.status }}</h1>
+    <h1>Description:  {{ fiction.description }}</h1>
+</div>
+<div>
+    <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}">Edit</a>
+    <a href="{% url 'fiction_fans:fiction_del' fiction.id %}">Delete</a>
+</div>
+<div class="single_line">
+    <h1>Chapter List</h1>
+    <a href="{% url 'fiction_fans:chapter_create' fiction.id %}" style="align-items: right;"><button style="background-color:cadetblue; border: 3px solid #555555;">Create</button></a>
+</div>
+<div class="scroll_view">
+    {% for chapter in chapters %}
+        <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
+            {{ chapter.title }}
+        </a>
+    {% endfor %}  
+</div>
 </div>
 {% endblock content %}

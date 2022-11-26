@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="flex mt-16">
-    <div class="flex font-bold text-3xl items-center justify-center">
-        {{ fictionchapter.fiction_title }}
+    <div style="text-align: center;">
+        <h1 style="color: #10b2f7; font-size: xx-large; font-family: serif; font-weight: bold;">{{ fictionchapter.title }}</h1>
+        <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}">
+            <button style="background-color:rgb(236, 155, 25); border: 3px solid #ed0e0e;">Edit</button>
+        </a>
+        <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}">
+            <button style="background-color:rgb(255, 0, 0); border: 3px solid #00000000;">Delete</button>
+        </a>
     </div>
-</div>
 <br>
-<div class="flex mt-16">
-    <div class="flex font-bold text-3xl items-center justify-center">
+<div class="flex-container">
+    <div id="content" class="block" style="min-width:1000px; min-height:500px">
         <section id="chapter-body"></section>
         <script>
             window.addEventListener(
@@ -52,6 +56,31 @@
                 }
             );
         </script>
+    </div>
+    <div>
+        <div  id="content" class="scroll_view" style="background-color: aquamarine;">
+            {% for comment in fictionchapter.comment_set.all %}
+            <div>
+                <h1 style="color: darkblue;">{{ comment.user.get_username }}</h1>
+                <p style="color: darkcyan;">{{ comment.text }}</p>
+                <div style="text-align: right;">
+                    <date style="color:blueviolet; ">{{ comment.comment_date }}</date>
+                </div>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="background-color: blanchedalmond; width: 500px; height: 300px;">
+            <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+            {% csrf_token %}
+                <fieldset style="text-align: center;">
+                <h1 style="font-size: larger; font-weight:bold; font-family: cursive; color:#9e550c">comment session</h1>
+                <textarea id="comment_text" name="comment_text" rows="8" cols="50"></textarea>
+                <br>
+                <input type="submit" value="comment" style="background-color:rgb(209, 133, 10); border: 3px solid #9e550c; color: #2a084d;">
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock content %}
