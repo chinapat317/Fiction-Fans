@@ -29,10 +29,10 @@ def fiction_view(request, fiction_id):
     """Create view of fiction for show fiction's title and list of episode."""
     template_name = "fiction_fans/fiction_page.html"
     fiction = FictionTitle.objects.get(id=fiction_id)
-    chapters = FictionChapter.objects.filter(fiction_title=fiction)
+    chapters = fiction.fictionchapter_set.all()
     context = {
         "fiction": fiction,
-        "chapters": chapters,
+        "chapters": chapters
     }
     return render(request, template_name, context=context)
 
