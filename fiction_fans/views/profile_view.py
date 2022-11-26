@@ -1,5 +1,5 @@
 """Create view for web homepage."""
-from ..models.fiction_model import FictionTitle
+from fiction_fans.models import FictionTitle
 from django.views import generic
 
 # Create your views here.

@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from ..forms.fiction_create_form import FictionForm, ChapterForm
-from ..models import FictionTitle
+from fiction_fans.models import FictionTitle
 
 # Create your views here.
 
