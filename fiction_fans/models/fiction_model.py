@@ -9,7 +9,7 @@ from django.utils import timezone
 
 class FictionTitle(models.Model):
     """Create fiction that contain fiction's title and created date/time."""
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255, default="Anonymous")
     status = models.CharField(max_length=255, default="ongoing")
