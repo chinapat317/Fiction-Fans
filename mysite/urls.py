@@ -27,4 +27,4 @@ urlpatterns = [
     path("", generic.RedirectView.as_view(url="/fiction/")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("signup/", signup, name="signup"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
