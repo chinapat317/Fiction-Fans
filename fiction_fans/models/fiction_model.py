@@ -11,9 +11,10 @@ class FictionTitle(models.Model):
     """Create fiction that contain fiction's title and created date/time."""
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
+    cover = models.ImageField(null=True, blank=True, default="/static/images/no-cover.png")
     author = models.CharField(max_length=255, default="Anonymous")
-    status = models.CharField(max_length=255, default="ongoing")
-    description = models.CharField(max_length=255, default=" ")
+    status = models.CharField(max_length=255, default="Ongoing")
+    description = models.CharField(max_length=255, default="")
     pub_date = models.DateTimeField(auto_now_add=timezone.now())
 
     def __str__(self) -> str:
