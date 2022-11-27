@@ -3,6 +3,7 @@ from django.db import models
 from django.conf import settings
 from django_editorjs import EditorJsField
 from django.utils import timezone
+from django.conf import settings
 
 # Create your models here.
     
@@ -11,7 +12,7 @@ class FictionTitle(models.Model):
     """Create fiction that contain fiction's title and created date/time."""
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    cover = models.ImageField(null=True, blank=True, default="/static/images/no-cover.png")
+    cover_url = models.CharField(max_length=255, default="https://firebasestorage.googleapis.com/v0/b/fiction-fans.appspot.com/o/no-cover.png?alt=media&token=007d2b16-2e97-409b-b5ed-c3729fa5dc3a")
     author = models.CharField(max_length=255, default="Anonymous")
     status = models.CharField(max_length=255, default="Ongoing")
     description = models.CharField(max_length=255, default="")
@@ -19,7 +20,6 @@ class FictionTitle(models.Model):
 
     def __str__(self) -> str:
         return self.title
-
 
 class FictionChapter(models.Model):
     """

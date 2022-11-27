@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
 from ..forms.fiction_create_form import FictionForm, ChapterForm
 from ..models import FictionTitle
+from django.conf import settings
+from . import storage
 
 # Create your views here.
 
@@ -19,7 +20,10 @@ def create_fiction(request):
     }
     if request.method == "POST":
         if form.is_valid():
-            fiction = form.save()
+            fiction = form.save(commit=False)
+            fiction.user = request.user
+            #fiction.cover_url = storage.upload(request)
+            fiction.save()
             return HttpResponseRedirect(reverse("fiction_fans:fiction_view", args=(fiction.id,)))
     return render(request, template_name, context=context)
 

@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import requires_csrf_token
 from ..models.fiction_model import FictionTitle, FictionChapter
-
+from . import storage
 # Create your views here.
 
 
@@ -33,6 +33,7 @@ def fiction_view(request, fiction_id):
     context = {
         "fiction": fiction,
         "chapters": chapters,
+        "cover": fiction.cover_url
     }
     return render(request, template_name, context=context)
 

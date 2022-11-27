@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 
 STATIC_DIR = '/static/'
 
@@ -142,8 +142,14 @@ STATIC_DIR = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = "/fiction/images/"
+MEDIA_ROOT = BASE_DIR / "images"
 
-MEDIA_URL = "/fiction/images/"
+MEDIA_URL = "/images/"
 
 CSRF_TRUSTED_ORIGINS = ["https://*.fictionfans.azurewebsites.net", "https://*.127.0.0.1"]
+
+#upload file setting
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]

@@ -5,7 +5,7 @@ from ..models.fiction_model import FictionTitle, FictionChapter
 class FictionForm(ModelForm):
     class Meta:
         model = FictionTitle
-        fields = "__all__"
+        fields = ["title", "author", "status", "description"]
 
 
 class ChapterForm(ModelForm):
