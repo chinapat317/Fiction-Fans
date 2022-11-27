@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-    <div style="text-align: center;">
-        <h1 style="color: #10b2f7; font-size: xx-large; font-family: serif; font-weight: bold;">{{ fictionchapter.title }}</h1>
-        <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}">
-            <button style="background-color:rgb(236, 155, 25); border: 3px solid #ed0e0e;">Edit</button>
+<div style="padding: 10px;">
+    {{ fictionchapter.title }} -
+    <a href="{% url 'fiction_fans:fiction_view' fictionchapter.fiction_title_id %}" style="margin-left: 10px;">
+        {{ fictionchapter.fiction_title.title }}
+    </a>
+    <div style="float: right;">
+        <a href="{% url 'fiction_fans:chapter_view' fictionchapter.fiction_title_id fictionchapter.id %}" style="margin-left: 10px; border: solid;">
+            Previous Chapter
         </a>
-        <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}">
-            <button style="background-color:rgb(255, 0, 0); border: 3px solid #00000000;">Delete</button>
+        <a href="{% url 'fiction_fans:chapter_view' fictionchapter.fiction_title_id fictionchapter.id %}" style="margin-left: 10px; border: solid;">
+            Next Chapter
         </a>
     </div>
-<br>
-<div class="flex-container">
-    <div id="content" class="block" style="min-width:1000px; min-height:500px">
-        <section id="chapter-body"></section>
+</div>
+
+<div style="border: solid; word-wrap: break-word; padding: 20px;">
+    <section id="chapter-body"></section>
         <script>
             window.addEventListener(
                 "DOMContentLoaded", () => {
@@ -56,31 +60,44 @@
                 }
             );
         </script>
-    </div>
-    <div>
-        <div  id="content" class="scroll_view" style="background-color: aquamarine;">
-            {% for comment in fictionchapter.comment_set.all %}
-            <div>
-                <h1 style="color: darkblue;">{{ comment.user.get_username }}</h1>
-                <p style="color: darkcyan;">{{ comment.text }}</p>
-                <div style="text-align: right;">
-                    <date style="color:blueviolet; ">{{ comment.comment_date }}</date>
-                </div>
-                <br>
-            </div>
-            {% endfor %}
+</div>
+
+<div style="float: right; margin: 10px;">
+    <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}" style="margin-right: 10px; border: solid;">
+        Edit
+    </a>
+    <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}" style="border: solid;">
+        Delete
+    </a>
+</div>
+
+<div style="margin-top: 50px;">
+    <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+    {% csrf_token %}
+        <fieldset style="padding: 20px;">
+        <p>comment session</p>
+        <textarea name="comment_text" id="comment_text" style="width: 800px; height: 100px;">
+        </textarea>
+        </fieldset>
+        <div style="margin: 10px; float: right;">
+            <input type="submit" value="comment" style="border: solid;">
         </div>
-        <div style="background-color: blanchedalmond; width: 500px; height: 300px;">
-            <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
-            {% csrf_token %}
-                <fieldset style="text-align: center;">
-                <h1 style="font-size: larger; font-weight:bold; font-family: cursive; color:#9e550c">comment session</h1>
-                <textarea id="comment_text" name="comment_text" rows="8" cols="50"></textarea>
-                <br>
-                <input type="submit" value="comment" style="background-color:rgb(209, 133, 10); border: 3px solid #9e550c; color: #2a084d;">
-                </fieldset>
-            </form>
-        </div>
-    </div>
+    </form>
+</div>
+
+<!-- comment display section. -->
+<!-- will be change to user link -->
+<div style="overflow: scroll; border: solid; padding: 20px; height: 300px; margin-top: 50px;">
+    {% for comment in fictionchapter.comment_set.all %}    
+        <h1 style="font-family: cursive; font-size: large; font-weight: 400; color: blueviolet;">
+            {{ comment.user.get_username }}
+        </h1>
+        <p style="font-family: cursive; font-size: medium; font-weight: 200;">
+            {{ comment.text }}
+        </p>
+        <date style="font-family: cursive; color: white; font-size: small; font-weight: 100;">
+            {{ comment.comment_date }}
+        </date>
+    {% endfor %}
 </div>
 {% endblock content %}

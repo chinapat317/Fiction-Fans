@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="" method="post" class="mt-16">
-    {% csrf_token %}
-    <div>
-        <h1>{{ form.title.label }}</h1>
-        <div class="border">
-            {{ form.title }}
-        </div>
-    </div>
-    <div>
-        <h1>{{ form.content.label }}</h1>
-        <div>
+<div style="padding: 20px;">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div style="padding: 10px; margin: 2% 5%;">
+            <h1 style="margin-bottom: 2%">
+                {{ form.title.label }}
+                {{ form.title }}
+            </h1>
+            <h1 style="margin-bottom: 2%">
+                {{ form.content.label }}
+            </h1>
             {{ form.content | safe }}
         </div>
-    </div>
-    <!--<div>
-        <h1>{{ form.novel_title.label }}</h1>
-        {{ form.fiction_title }}
-    </div>-->
-    <input type="submit" value="Submit">
-</form>
+        <div style="float: right; margin-right: 80px">
+            <input type="submit" value="Submit" style="border: solid;">
+            <a style="border: solid; margin-left: 10px;">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
 {% endblock content %}
