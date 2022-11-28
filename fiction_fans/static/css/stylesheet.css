@@ -2,26 +2,27 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
     margin: 0;
 }
+
 nav {
     background: #acacac;
+    border: 2px solid black;
+    align-items: center;
+    display: flex;
     padding: 15px;
     height: 80px;
-    display: flex;
-    align-items: center;
     margin: 0px;
-    border: 2px solid black;
 }
 
 .logo {
+    font-family: Marker Felt;
     font-size: 40px;
     margin: 30px; 
-    font-family: Marker Felt;
     margin-right: auto;
 }
 
 .logo a {
-    text-decoration: none;
     color: black;
+    text-decoration: none;
 }
 
 .home {
@@ -30,19 +31,19 @@ nav {
 }
 
 .home a {
-    text-decoration: none;
     color: black;
+    text-decoration: none;
 }
 
 .auth a {
+    background-color: rgb(255, 255, 255);
     text-decoration: none;
-    color: black;
-    margin: 10px;
     border-style: outset;
     border-radius: 8px;
     font-size: 15px;
     padding: 5px;
-    background-color: rgb(255, 255, 255)
+    margin: 10px;
+    color: black;
 }
 
 .flex-container {
@@ -52,9 +53,9 @@ nav {
 }
 
 #content{
-    margin: 5% 15%;
-    padding: 20px;
+    background: #acacac;
     border-radius: 8px;
     overflow: auto;
-    background: #acacac;
+    margin: 5% 15%;
+    padding: 20px;
 }
