@@ -1,23 +1,26 @@
-"""Create view for web homepage."""
+"""All fiction by rate and submitted time for web homepage."""
 from ..models.fiction_model import FictionTitle
-from django.views import generic
 from django.utils import timezone
+from django.views import generic
 
 # Create your views here.
 
-class HotIndex(generic.ListView):
-    """Create view for index list all fiction's title sorted by rate."""
-    template_name = "fiction_fans/indexpage_hot.html"
+
+class HotPage(generic.ListView):
+    """Hot page view for listing all fiction sorted by rate."""
+    template_name = "fiction_fans/hot_page.html"
     context_object_name = "hot_fictions"
 
     def get_queryset(self):
         return FictionTitle.objects.all()
 
 
-class RecentlyIndex(generic.ListView):
-    """Create view for index list all fiction's title sorted by published date."""
-    template_name = "fiction_fans/indexpage_recently.html"
+class RecentlyPage(generic.ListView):
+    """Recently view for listing all fiction sorted by submitted date."""
+    template_name = "fiction_fans/recently_page.html"
     context_object_name = "recently_fictions"
 
     def get_queryset(self):
-        return FictionTitle.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')
+        return FictionTitle.objects.filter(
+            pub_date__lte=timezone.now()
+        ).order_by('-pub_date')

@@ -148,8 +148,8 @@ MEDIA_URL = "/images/"
 
 CSRF_TRUSTED_ORIGINS = ["https://*.fictionfans.azurewebsites.net", "https://*.127.0.0.1"]
 
-#upload file setting
+# Upload files settings
 FILE_UPLOAD_HANDLERS = [
-    'django.core.files.uploadhandler.MemoryFileUploadHandler',
-    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
 ]

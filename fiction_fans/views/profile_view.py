@@ -1,11 +1,12 @@
-"""Create view for web homepage."""
+"""Profile view for web application."""
 from ..models.fiction_model import FictionTitle
 from django.views import generic
 
 # Create your views here.
 
+
 class Profile(generic.ListView):
-    """Create view for homepage list all fiction's title."""
+    """Profile view for listing all submitted fiction by that user."""
     template_name = "fiction_fans/profile_page.html"
     context_object_name = "fictions"
 

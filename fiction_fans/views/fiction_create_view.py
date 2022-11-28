@@ -1,9 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+"""Create and edit features for fiction and chapter."""
+from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from ..forms.fiction_create_form import FictionForm, ChapterForm
-from ..models import FictionTitle
-from django.conf import settings
+from ..forms.fiction_form import FictionForm, ChapterForm
 from . import storage
 
 # Create your views here.
@@ -11,7 +10,8 @@ from . import storage
 
 def create_fiction(request):
     """
-    For creating fiction title page.
+    Create fiction to put on fiction page by using form
+    to save information from writer.
     """
     form = FictionForm(request.POST or None)
     template_name = "fiction_fans/fiction_create.html"
@@ -30,7 +30,8 @@ def create_fiction(request):
 
 def create_chapter(request, fiction_pk):
     """
-    For creating chapter in fiction title.
+    Create chapter to put on chapter page by using form 
+    to save information from writer.
     """
     template_name = "fiction_fans/chapter_create.html"
     form = ChapterForm(request.POST or None)
