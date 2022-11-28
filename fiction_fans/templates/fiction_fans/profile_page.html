@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <div style="font-size: 22px; margin: 10px;">
-    <h1>{{ user.get_username }}</h1>
+    <h1>
+        {{ user.get_username }}
+    </h1>
 </div>
 <div style=" border-radius: 8px; background-color: #ffffff;; padding: 20px; margin: 10px;">
-    <h1 style="font-weight: bold; margin-bottom: 10px;">Submitted Fictions</h1>
+    <h1 style="font-weight: bold; margin-bottom: 10px;">
+        Submitted Fictions
+    </h1>
     {% for fiction in fictions %}
     <ol>
         <li>
