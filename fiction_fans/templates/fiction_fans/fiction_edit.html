@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<div style="padding: 10px;">
+<div style="padding: 10px; font-size: 22px;">
     Edit {{ fiction.title }}
 </div>
-<div style="border: solid; padding: 20px;">
+<div style="padding: 20px 0px 20px 20px; background-color: rgb(255, 255, 255); border-radius: 8px; margin: 10px;">
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <div>
+            <label>Upload cover</label>
+            <input type="file" id="file" class="image" name="image">
+        </div>
         <div style="float: right; margin-top: 30px;">
-            <input type="submit" value="Submit"  style="border: solid;">
-            <a href="{% url 'fiction_fans:fiction_view' fiction.id %}"  style="border: solid; margin-left: 10px;">
+            <a href="{% url 'fiction_fans:fiction_view' fiction.id %}"  style="margin-right: 10px; background-color: rgb(198, 255, 251); border-radius: 8px; padding: 8px;">
                 Cancel
             </a>
+            <input type="submit" value="Submit" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
         </div>
     </form>
 </div>

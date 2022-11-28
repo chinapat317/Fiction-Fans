@@ -14,7 +14,9 @@ nav {
 
 .logo {
     font-size: 40px;
-    margin: 30px;
+    margin: 30px; 
+    font-family: Marker Felt;
+    margin-right: auto;
 }
 
 .logo a {
@@ -32,16 +34,15 @@ nav {
     color: black;
 }
 
-.auth {
-    font-size: 20px;
-}
-
 .auth a {
     text-decoration: none;
     color: black;
     margin: 10px;
-    border: solid;
-    background-color: yellow;
+    border-style: outset;
+    border-radius: 8px;
+    font-size: 15px;
+    padding: 5px;
+    background-color: rgb(255, 255, 255)
 }
 
 .flex-container {
@@ -52,37 +53,8 @@ nav {
 
 #content{
     margin: 5% 15%;
-    margin-bottom: auto;
     padding: 20px;
+    border-radius: 8px;
     overflow: auto;
     background: #acacac;
-}
-
-#content.block{
-    border: thick solid #ec2222;
-    background-color: #e3eb50;
-}
-
-#content.scroll_view {
-    height: 300px; 
-    width: 500px; 
-    overflow: scroll;
-}
-
-#content.scroll_view h1 {
-    font-family: cursive;
-    font-size: large;
-    font-weight: 400;
-}
-
-#content.scroll_view p{
-    font-family: cursive;
-    font-size: medium;
-    font-weight: 200;
-}
-
-#content.scroll_view date{
-    font-family: cursive;
-    font-size: small;
-    font-weight: 100;
 }

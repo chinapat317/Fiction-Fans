@@ -1,32 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
 <div style="padding: 10px;">
-    {{ fiction.title }}
     <div style="float: right;">
-        <h1>Create by: {{ fiction.user.get_username }}</h1>
+        <h1>Contributor: {{ fiction.user.get_username }}</h1>
     </div>
+    <h1 style="font-size: 22px;">{{ fiction.title }}</h1>
 </div>
-<div style="border: solid; padding: 20px;">
-    <img src="{{ cover }}" width="150" height="250">
+<div style="padding: 20px; background-color: rgb(255, 255, 255); border-radius: 8px; margin: 10px 10px 0px 10px;">
+    <img src="{{ fiction.cover.url }}">
+    <div>
     <h1>Title:  {{ fiction.title }}</h1>
     <h1>Author:  {{ fiction.author }}</h1>
     <h1>Status:  {{ fiction.status }}</h1>
     <h1>Description:  {{ fiction.description }}</h1>
+    </div>
 </div>
 {% if user.is_authenticated %}
-<div style="float: right; margin: 10px;">
-    <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}" style="margin-right: 10px; border: solid;">
-        Edit
-    </a>
-    <a href="{% url 'fiction_fans:fiction_del' fiction.id %}" style="border: solid;">
-        Delete
-    </a>
-</div>
+    {% if fiction.user.get_username == user.get_username %}
+        <div style="float: right; margin: 10px;">
+            <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}" style="margin-right: 10px; background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
+                Edit
+            </a>
+            <a href="{% url 'fiction_fans:fiction_del' fiction.id %}" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
+                Delete
+            </a>
+        </div>
+    {% endif %}
 {% endif %}
 <div style="padding: 10px; margin-top: 50px; margin-bottom: auto;">
     Chapter List 
 </div>
-<div style="border: solid; padding: 20px;">
+<div style="background-color: rgb(255, 255, 255); border-radius: 8px; margin: 10px 10px 0px 10px;; padding: 20px;">
     <ol>
         {% for chapter in chapters %}
         <li>
@@ -38,10 +42,12 @@
     </ol>
 </div>
 {% if user.is_authenticated %}
-<div style="float: right; margin: 10px;">
-    <a href="{% url 'fiction_fans:chapter_create' fiction.id %}" style="border: solid;">
-        Create
-    </a>
-</div>
+    {% if fiction.user.get_username == user.get_username %}
+        <div style="float: right; margin: 10px;">
+            <a href="{% url 'fiction_fans:chapter_create' fiction.id %}" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
+                Create
+            </a>
+        </div>
+    {% endif %}
 {% endif %}
 {% endblock content %}
