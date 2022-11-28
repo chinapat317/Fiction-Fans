@@ -11,9 +11,12 @@
             <h1 style="margin-bottom: 2%">
                 {{ form.content.label }}
             </h1>
+            <label style="font-size: 10px; color:white">
+                Tip: "Shift+Enter" to leave a blank line.
+            </label>
             {{ form.content | safe }}
         </div>
-        <div style="float: right; margin-right: 65px">
+        <div style="margin-left: 6%;">
             <input type="submit" value="Submit" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
         </div>
     </form>
