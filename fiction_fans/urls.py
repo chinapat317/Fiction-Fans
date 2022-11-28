@@ -11,7 +11,9 @@ from .views import (HomePage
                     , ChapterView
                     , delete_chapter
                     , delete_fiction
-                    , Profile)
+                    , Profile
+                    , HotIndex
+                    , RecentlyIndex)
 
 app_name = "fiction_fans"
 urlpatterns = [
@@ -27,4 +29,6 @@ urlpatterns = [
     path("<int:fiction_id>/<int:chapter_id>/del/", delete_chapter, name="chapter_del"),
     path("<int:fiction_pk>/<int:chapter_pk>/comment/", comment, name="chapter_comment"),
     path("imageUPload/", csrf_exempt(upload_image_view)),
+    path("hot/", HotIndex.as_view(), name="hot_index"),
+    path("recently/", RecentlyIndex.as_view(), name="recently_index"),
 ]

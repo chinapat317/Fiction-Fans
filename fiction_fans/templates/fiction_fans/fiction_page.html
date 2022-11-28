@@ -3,9 +3,7 @@
 <div style="padding: 10px;">
     {{ fiction.title }}
     <div style="float: right;">
-        <a href="{% url 'fiction_fans:profile' %}" style="margin-left: 10px;">
-            username
-        </a>
+        <h1>Create by: {{ fiction.user.get_username }}</h1>
     </div>
 </div>
 <div style="border: solid; padding: 20px;">

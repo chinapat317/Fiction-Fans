@@ -5,3 +5,4 @@ from .fiction_edit_view import edit_fiction, edit_chapter
 from .fiction_delete_view import delete_chapter, delete_fiction
 from .fiction_create_view import create_fiction, create_chapter
 from .profile_view import Profile
+from .index_view import RecentlyIndex, HotIndex
