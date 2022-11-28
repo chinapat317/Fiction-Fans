@@ -24,5 +24,4 @@ def upload(request):
     storage.child("images/" + file.name).put("images/"+file.name)
     print("upload success")
     url = storage.child("images/"+file.name).get_url(token=None)
-  
     return url
