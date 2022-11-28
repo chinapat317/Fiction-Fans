@@ -6,3 +6,5 @@ from .index_view import RecentlyPage, HotPage
 from .homepage_view import HomePage
 from .profile_view import Profile
 from .comment_view import comment
+from .rate import rate
+

@@ -59,7 +59,7 @@
 </div>
 <div style="margin-top: 50px; padding: 10px 10px 10px 17.5px;">
     <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
-    {% csrf_token %}
+        {% csrf_token %}
         <fieldset style="padding: 10px 10px 0px 10px;">
             <p>
                 Add a comment
@@ -84,5 +84,33 @@
             {{ comment.comment_date }}
         </date>
     {% endfor %}
+</div>
+<div style="background-color: blanchedalmond; width: 500px; height: auto;">
+    <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+    {% csrf_token %}
+        <fieldset style="text-align: center;">
+        <h1 style="font-size: larger; font-weight:bold; font-family: cursive; color:#9e550c">comment session</h1>
+        <textarea id="comment_text" name="comment_text" rows="6" cols="50"></textarea>
+        <br>
+        <input type="submit" value="comment" style="background-color:rgb(209, 133, 10); border: 3px solid #9e550c; color: #2a084d;">
+        </fieldset>
+    </form>
+    <form action="{% url 'fiction_fans:rate_chapter' fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+        {% csrf_token %}
+            <fieldset style="text-align: left;">
+                <h1>Rate this chapter.</h1>
+                <input type="radio" id="point" name="point" value="{{ 1 }}">
+                <label>1&nbsp;</label>
+                <input type="radio" id="point" name="point" value="{{ 2 }}">
+                <label>2&nbsp;</label>
+                <input type="radio" id="point" name="point" value="{{ 3 }}">
+                <label>3&nbsp;</label>
+                <input type="radio" id="point" name="point" value="{{ 4 }}">
+                <label>4&nbsp;</label>
+                <input type="radio" id="point" name="point" value="{{ 5 }}">
+                <label>5&nbsp;</label>
+            </fieldset>
+            <input type="submit" value="rate">
+    </form>
 </div>
 {% endblock content %}

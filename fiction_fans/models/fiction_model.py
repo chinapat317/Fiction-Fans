@@ -75,3 +75,19 @@ class FictionChapter(models.Model):
 
     def __str__(self) -> str:
         return f"{self.fiction_title}: {self.title}"
+    
+    def average_rate(self):
+        """Return average rate of chapter."""
+        chapter_rate = self.ratemodel_set.all()
+        file = open("log.txt", "w")
+        file.write("id = {}".format(self))
+        file.close()
+        all_point = 0
+        count = 0
+        for rate in chapter_rate:
+            all_point += rate.point
+            count += 1
+        if count == 0 :
+            return 0
+        return all_point/count
+        

@@ -44,6 +44,8 @@
 {% endif %}
 <div style="padding: 10px; margin-top: 30px; margin-bottom: auto;">
     Chapter List 
+<div style="padding: 10px; margin-top: 50px; margin-bottom: auto;">
+    Chapter List
 </div>
 <div style="background-color: rgb(255, 255, 255); border-radius: 8px; margin: 10px 10px 0px 10px;; padding: 20px;">
     <ol>
@@ -52,6 +54,9 @@
             <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
                 {{ chapter.title }}
             </a>
+                {% if chapter.average_rate %}
+                    <label>(point = {{ chapter.average_rate }})</label>
+                {% endif %}
         </li>
         {% endfor %}
     </ol>

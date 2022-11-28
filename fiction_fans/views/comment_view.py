@@ -23,7 +23,7 @@ def comment(request, fiction_pk, chapter_pk):
     # delete when finish
     file = open("log.txt", "w")
     file.write("comment_text = {}".format(request.POST.get("comment_text")))
-    file.close
+    file.close()
     ###################################################################
     chapter.comment_set.create(user=user, text=comment_text)
     return HttpResponseRedirect(
