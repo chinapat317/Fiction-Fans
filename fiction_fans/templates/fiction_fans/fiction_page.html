@@ -2,18 +2,33 @@
 {% block content %}
 <div style="padding: 10px;">
     <div style="float: right;">
-        <h1>Contributor: {{ fiction.user.get_username }}</h1>
+        <h1>
+            Contributor: {{ fiction.user.get_username }}
+        </h1>
     </div>
-    <h1 style="font-size: 22px;">{{ fiction.title }}</h1>
+    <h1 style="font-size: 22px;">
+        {{ fiction.title }}
+    </h1>
 </div>
-<div style="padding: 20px; background-color: rgb(255, 255, 255); border-radius: 8px; margin: 10px 10px 0px 10px;">
-    <img src="{{ fiction.cover.url }}">
-    <div>
-    <h1>Title:  {{ fiction.title }}</h1>
-    <h1>Author:  {{ fiction.author }}</h1>
-    <h1>Status:  {{ fiction.status }}</h1>
-    <h1>Description:  {{ fiction.description }}</h1>
-    </div>
+<div style="width: 199px; height: 230px; float: left; margin: 10px 20px 0px 10px; overflow: auto;">
+    <img src="{{ cover }}">
+</div>
+<div style="padding: 20px; background-color: rgb(255, 255, 255); border-radius: 8px; margin: 10px 10px 0px 10px; height: 230px;">
+    <h1>
+        Title: {{ fiction.title }}
+    </h1>
+    <h1>
+        Author: {{ fiction.author }}
+    </h1>
+    <h1>
+        Translator: {{ fiction.translator }}
+    </h1>
+    <h1>
+        Status: {{ fiction.status }}
+    </h1>
+    <h1>
+        Description: {{ fiction.description }}
+    </h1>
 </div>
 {% if user.is_authenticated %}
     {% if fiction.user.get_username == user.get_username %}
@@ -27,7 +42,7 @@
         </div>
     {% endif %}
 {% endif %}
-<div style="padding: 10px; margin-top: 50px; margin-bottom: auto;">
+<div style="padding: 10px; margin-top: 30px; margin-bottom: auto;">
     Chapter List 
 </div>
 <div style="background-color: rgb(255, 255, 255); border-radius: 8px; margin: 10px 10px 0px 10px;; padding: 20px;">
