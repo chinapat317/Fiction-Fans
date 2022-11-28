@@ -20,8 +20,9 @@ storage = firebase.storage()
 
 def upload(request):
     file = request.FILES['image']
-    file_save = default_storage.save(str(file), file)
-    storage.child("images/" + file.name).put(file.name)
-    url = storage.child("images/"+file.name).get_url()
-    messages.success(request, "File upload in Firebase Storage successful")
+    file_save = default_storage.save(file.name, file)
+    storage.child("images/" + file.name).put("images/"+file.name)
+    print("upload success")
+    url = storage.child("images/"+file.name).get_url(token=None)
+  
     return url

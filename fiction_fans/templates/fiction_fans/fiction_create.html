@@ -4,9 +4,13 @@
     Create Fiction
 </div>
 <div style="padding: 20px; border: solid;">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+        <div>
+            <label> Upload cover picture here.</label>
+            <input type="file" id="file" class="image" name="image">
+        </div>
         <div style="float: right; margin-top: 30px;">
             <a href="{% url 'fiction_fans:profile' %}" style="border: solid; margin-left: 10px;">
                 Cancel

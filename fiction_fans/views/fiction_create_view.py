@@ -22,7 +22,7 @@ def create_fiction(request):
         if form.is_valid():
             fiction = form.save(commit=False)
             fiction.user = request.user
-            #fiction.cover_url = storage.upload(request)
+            fiction.cover_url = storage.upload(request)
             fiction.save()
             return HttpResponseRedirect(reverse("fiction_fans:fiction_view", args=(fiction.id,)))
     return render(request, template_name, context=context)
