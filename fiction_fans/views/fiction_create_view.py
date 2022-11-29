@@ -22,8 +22,8 @@ def create_fiction(request):
         if form.is_valid():
             fiction = form.save(commit=False)
             fiction.user = request.user
-            if request.POST.get('image') is not '':
-                fiction.cover_url = storage.upload(request)
+            if request.POST.get('image') != '':
+                fiction.cover_url, fiction.cover_pic_name = storage.upload(request)
             fiction.save()
             return HttpResponseRedirect(reverse("fiction_fans:fiction_view", args=(fiction.id,)))
     return render(request, template_name, context=context)

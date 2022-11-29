@@ -29,6 +29,7 @@ class FictionTitle(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE
     )
     title = models.CharField(max_length=255)
+    cover_pic_name = models.CharField(max_length=255, default=" ")
     cover_url = models.CharField(
         max_length=255,
         default="https://firebasestorage.googleapis.com/v0/b/fiction-fans.appspot.com/o/no-cover.png?alt=media&token=007d2b16-2e97-409b-b5ed-c3729fa5dc3a"
