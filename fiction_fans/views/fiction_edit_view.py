@@ -4,8 +4,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from ..forms.fiction_form import FictionForm, ChapterForm
 from ..models.fiction_model import FictionTitle, FictionChapter
-# imported not use
-# from . import storage
+from . import storage
 
 # Create your views here.
 
