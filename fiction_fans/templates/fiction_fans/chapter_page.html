@@ -57,35 +57,7 @@
         Delete
     </a>
 </div>
-<div style="margin-top: 50px; padding: 10px 10px 10px 17.5px;">
-    <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
-        {% csrf_token %}
-        <fieldset style="padding: 10px 10px 0px 10px;">
-            <p>
-                Add a comment
-            </p>
-            <textarea name="comment_text" id="comment_text" style="width: 966px; height: 50px;">
-            </textarea>
-        </fieldset>
-        <div style="margin: 0px 19px 10px 10px; float: right;">
-            <input type="submit" value="Comment" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
-        </div>
-    </form>
-</div>
-<div style="overflow: scroll; padding: 20px; height: 300px; border-radius: 8px; background-color: #ffffff;; padding: 20px; margin: 50px 10px 10px 10px;">
-    {% for comment in fictionchapter.comment_set.all %}
-        <h1 style="font-family: cursive; font-size: large; font-weight: 400; color: blueviolet;">
-            {{ comment.user.get_username }}
-        </h1>
-        <p style="font-family: cursive; font-size: medium; font-weight: 200;">
-            {{ comment.text }}
-        </p>
-        <date style="font-family: cursive; color: rgb(140, 140, 140); font-size: small; font-weight: 100;">
-            {{ comment.comment_date }}
-        </date>
-    {% endfor %}
-</div>
-<div style="background-color: blanchedalmond; width: 500px; height: auto;">
+<div style="margin-left: 20px; padding: 20px;">
     <form action="{% url 'fiction_fans:rate_chapter' fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
         {% csrf_token %}
         <fieldset style="text-align: left;">
@@ -113,7 +85,35 @@
                 5&nbsp;
             </label>
         </fieldset>
-        <input type="submit" value="Rate">
+        <input type="submit" value="Rate" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
     </form>
+</div>
+<div style="padding: 10px 10px 10px 17.5px;">
+    <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+        {% csrf_token %}
+        <fieldset style="padding: 10px 10px 0px 10px;">
+            <p>
+                Add a comment
+            </p>
+            <textarea name="comment_text" id="comment_text" style="width: 966px; height: 50px;">
+            </textarea>
+        </fieldset>
+        <div style="margin: 0px 19px 10px 10px; float: right;">
+            <input type="submit" value="Comment" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
+        </div>
+    </form>
+</div>
+<div style="overflow: scroll; padding: 20px; height: 300px; border-radius: 8px; background-color: #ffffff;; padding: 20px; margin: 50px 10px 10px 10px;">
+    {% for comment in fictionchapter.comment_set.all %}
+        <h1 style="font-family: cursive; font-size: large; font-weight: 400; color: blueviolet;">
+            {{ comment.user.get_username }}
+        </h1>
+        <p style="font-family: cursive; font-size: medium; font-weight: 200;">
+            {{ comment.text }}
+        </p>
+        <date style="font-family: cursive; color: rgb(140, 140, 140); font-size: small; font-weight: 100;">
+            {{ comment.comment_date }}
+        </date>
+    {% endfor %}
 </div>
 {% endblock content %}
