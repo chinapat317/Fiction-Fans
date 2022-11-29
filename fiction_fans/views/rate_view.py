@@ -18,11 +18,11 @@ def rate(request, fiction_pk, chapter_pk):
     if not user.is_authenticated:
         messages.add_message(
             request, messages.INFO,
-            "Please login before rate."
+            "Please login before rating."
         )
         return HttpResponseRedirect("../../../../accounts/login/")
     chapter = get_object_or_404(FictionChapter, pk=chapter_pk)
-    point = request.POST.get('point')
+    point = request.POST.get("point")
     try:
         rate = RateModel.objects.get(user=user, chapter=chapter_pk)
         rate.point = point
