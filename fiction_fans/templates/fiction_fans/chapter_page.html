@@ -1,103 +1,116 @@
 {% extends "base.html" %}
 {% block content %}
-    <div style="text-align: center;">
-        <h1 style="color: #10b2f7; font-size: xx-large; font-family: serif; font-weight: bold;">{{ fictionchapter.title }}</h1>
-        <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}">
-            <button style="background-color:rgb(236, 155, 25); border: 3px solid #ed0e0e;">Edit</button>
-        </a>
-        <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}">
-            <button style="background-color:rgb(255, 0, 0); border: 3px solid #00000000;">Delete</button>
-        </a>
-    </div>
-<br>
-<div class="flex-container">
-    <div id="content" class="block" style="min-width:1000px; min-height:500px">
-        <section id="chapter-body"></section>
-        <script>
-            window.addEventListener(
-                "DOMContentLoaded", () => {
-                    const chapterBody = document.getElementById("chapter-body");
-                    console.log("{{ fictionchapter.content | escapejs }}");
-                    let body = JSON.parse("{{ fictionchapter.content | escapejs }}");
-                    let block = body.blocks;
-                    console.log(block.length);
-                    for (let i = 0; i <= block.length; i++) {
-                        console.log(block[i], i);
-                        switch (block[i].type) {
-                            case "Header":
-                                let head = document.createElement(`h${block[i].data.level}`);
-                                head.textContent = block[i].data.text;
-                                chapterBody.appendChild(head);
-                                break;
-                            case "Image":
-                                let div = document.createElement("div");
-                                let image = document.createElement("img");
-                                let caption = document.createElement("small");
-                                image.src = `${block[i].data.file.url}`;
-                                image.style = "margin-top:10px;";
-                                image.height = 200;
-                                image.width = 200;
-                                caption.textContent = block[i].data.caption;
-                                caption.style = "margin-top:5px;";
-                                div.appendChild(image);
-                                div.appendChild(caption);
-                                div.style = "width:39%;display:grid;place-items:center";
-                                chapterBody.appendChild(div);
-                                break;
-                            case "paragraph":
-                                const text = document.createElement("p");
-                                text.innerHTML = block[i].data.text;
-                                chapterBody.appendChild(text);
-                                break;
-                            default:
-                                break;
-                        }
+<div style="padding: 10px; font-size: 22px;">
+    {{ fictionchapter.title }}
+</div>
+<div style="word-wrap: break-word; border-radius: 8px; background-color: #ffffff;; padding: 20px; margin: 10px;">
+    <section id="chapter-body"></section>
+    <script>
+        window.addEventListener(
+            "DOMContentLoaded", () => {
+                const chapterBody = document.getElementById("chapter-body");
+                console.log("{{ fictionchapter.content | escapejs }}");
+                let body = JSON.parse("{{ fictionchapter.content | escapejs }}");
+                let block = body.blocks;
+                console.log(block.length);
+                for (let i = 0; i <= block.length; i++) {
+                    console.log(block[i], i);
+                    switch (block[i].type) {
+                        case "Header":
+                            let head = document.createElement(`h${block[i].data.level}`);
+                            head.textContent = block[i].data.text;
+                            chapterBody.appendChild(head);
+                            break;
+                        case "Image":
+                            let div = document.createElement("div");
+                            let image = document.createElement("img");
+                            let caption = document.createElement("small");
+                            image.src = `${block[i].data.file.url}`;
+                            image.style = "margin-top:10px;";
+                            image.height = 200;
+                            image.width = 200;
+                            caption.textContent = block[i].data.caption;
+                            caption.style = "margin-top:5px;";
+                            div.appendChild(image);
+                            div.appendChild(caption);
+                            div.style = "width:39%;display:grid;place-items:center";
+                            chapterBody.appendChild(div);
+                            break;
+                        case "paragraph":
+                            const text = document.createElement("p");
+                            text.innerHTML = block[i].data.text;
+                            chapterBody.appendChild(text);
+                            break;
+                        default:
+                            break;
                     }
                 }
-            );
-        </script>
-    </div>
-    <div>
-        <div  id="content" class="scroll_view" style="background-color: aquamarine;">
-            {% for comment in fictionchapter.comment_set.all %}
-            <div>
-                <h1 style="color: darkblue;">{{ comment.user.get_username }}</h1>
-                <p style="color: darkcyan;">{{ comment.text }}</p>
-                <div style="text-align: right;">
-                    <date style="color:blueviolet; ">{{ comment.comment_date }}</date>
-                </div>
-                <br>
-            </div>
-            {% endfor %}
+            }
+        );
+    </script>
+</div>
+<div style="float: right; margin: 0px 10px 10px 10px;">
+    <a href="{% url 'fiction_fans:chapter_edit' fictionchapter.fiction_title_id fictionchapter.id %}" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px; margin-right: 10px;">
+        Edit
+    </a>
+    <a href="{% url 'fiction_fans:chapter_del' fictionchapter.fiction_title_id fictionchapter.id %}" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
+        Delete
+    </a>
+</div>
+<div style="margin-top: 50px; padding: 10px 10px 10px 17.5px;">
+    <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+        {% csrf_token %}
+        <fieldset style="padding: 10px 10px 0px 10px;">
+            <p>
+                Add a comment
+            </p>
+            <textarea name="comment_text" id="comment_text" style="width: 966px; height: 50px;">
+            </textarea>
+        </fieldset>
+        <div style="margin: 0px 19px 10px 10px; float: right;">
+            <input type="submit" value="Comment" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
         </div>
-        <div style="background-color: blanchedalmond; width: 500px; height: auto;">
-            <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
-            {% csrf_token %}
-                <fieldset style="text-align: center;">
-                <h1 style="font-size: larger; font-weight:bold; font-family: cursive; color:#9e550c">comment session</h1>
-                <textarea id="comment_text" name="comment_text" rows="6" cols="50"></textarea>
-                <br>
-                <input type="submit" value="comment" style="background-color:rgb(209, 133, 10); border: 3px solid #9e550c; color: #2a084d;">
-                </fieldset>
-            </form>
-            <form action="{% url 'fiction_fans:rate_chapter' fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
-                {% csrf_token %}
-                    <fieldset style="text-align: left;">
-                        <h1>Rate this chapter.</h1>
-                        <input type="radio" id="point" name="point" value="{{ 1 }}">
-                        <label>1&nbsp;</label>
-                        <input type="radio" id="point" name="point" value="{{ 2 }}">
-                        <label>2&nbsp;</label>
-                        <input type="radio" id="point" name="point" value="{{ 3 }}">
-                        <label>3&nbsp;</label>
-                        <input type="radio" id="point" name="point" value="{{ 4 }}">
-                        <label>4&nbsp;</label>
-                        <input type="radio" id="point" name="point" value="{{ 5 }}">
-                        <label>5&nbsp;</label>
-                    </fieldset>
-                    <input type="submit" value="rate">
-            </form>
-        </div>
-    </div>
+    </form>
+</div>
+<div style="overflow: scroll; padding: 20px; height: 300px; border-radius: 8px; background-color: #ffffff;; padding: 20px; margin: 50px 10px 10px 10px;">
+    {% for comment in fictionchapter.comment_set.all %}
+        <h1 style="font-family: cursive; font-size: large; font-weight: 400; color: blueviolet;">
+            {{ comment.user.get_username }}
+        </h1>
+        <p style="font-family: cursive; font-size: medium; font-weight: 200;">
+            {{ comment.text }}
+        </p>
+        <date style="font-family: cursive; color: rgb(140, 140, 140); font-size: small; font-weight: 100;">
+            {{ comment.comment_date }}
+        </date>
+    {% endfor %}
+</div>
+<div style="background-color: blanchedalmond; width: 500px; height: auto;">
+    <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+    {% csrf_token %}
+        <fieldset style="text-align: center;">
+        <h1 style="font-size: larger; font-weight:bold; font-family: cursive; color:#9e550c">comment session</h1>
+        <textarea id="comment_text" name="comment_text" rows="6" cols="50"></textarea>
+        <br>
+        <input type="submit" value="comment" style="background-color:rgb(209, 133, 10); border: 3px solid #9e550c; color: #2a084d;">
+        </fieldset>
+    </form>
+    <form action="{% url 'fiction_fans:rate_chapter' fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
+        {% csrf_token %}
+            <fieldset style="text-align: left;">
+                <h1>Rate this chapter.</h1>
+                <input type="radio" id="point" name="point" value="{{ 1 }}">
+                <label>1&nbsp;</label>
+                <input type="radio" id="point" name="point" value="{{ 2 }}">
+                <label>2&nbsp;</label>
+                <input type="radio" id="point" name="point" value="{{ 3 }}">
+                <label>3&nbsp;</label>
+                <input type="radio" id="point" name="point" value="{{ 4 }}">
+                <label>4&nbsp;</label>
+                <input type="radio" id="point" name="point" value="{{ 5 }}">
+                <label>5&nbsp;</label>
+            </fieldset>
+            <input type="submit" value="rate">
+    </form>
 </div>
 {% endblock content %}

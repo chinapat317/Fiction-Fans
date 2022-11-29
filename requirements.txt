@@ -2,3 +2,4 @@ Django
 django-editorjs
 python-decouple
 whitenoise
+Pillow

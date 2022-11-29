@@ -1,19 +1,46 @@
-"""Create the fiction and add mutiple chapter to fiction."""
+"""Model for fiction and add mutiple chapters to fictions."""
 from django.db import models
 from django.conf import settings
-from django_editorjs import EditorJsField
 from django.utils import timezone
+from django_editorjs import EditorJsField
 
 # Create your models here.
-    
+
+
+STATUS_CHOICES = [
+    ("Oneshot", "Oneshot"),
+    ("Ongoing", "Ongoing"),
+    ("Finish", "Finish"),
+    ("Draft", "Draft"),
+    ("Drop", "Drop"),
+]
+
 
 class FictionTitle(models.Model):
-    """Create fiction that contain fiction's title and created date/time."""
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    """
+    Create a fiction that contain:
+    fiction's title,
+    original author of the fiction,
+    status of the fiction - (Oneshot, Ongoing, Finish, Drop),
+    description of the fiction,
+    date of submit the fiction.
+    """
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+    )
     title = models.CharField(max_length=255)
+    cover_url = models.CharField(
+        max_length=255,
+        default="https://firebasestorage.googleapis.com/v0/b/fiction-fans.appspot.com/o/no-cover.png?alt=media&token=007d2b16-2e97-409b-b5ed-c3729fa5dc3a"
+    )
     author = models.CharField(max_length=255, default="Anonymous")
-    status = models.CharField(max_length=255, default="ongoing")
-    description = models.CharField(max_length=255, default=" ")
+    translator = models.CharField(max_length=255, default="Anonymous")
+    status = models.CharField(
+        max_length=255,
+        choices=STATUS_CHOICES,
+        default="Ongoing"
+    )
+    description = models.CharField(max_length=255, default="")
     pub_date = models.DateTimeField(auto_now_add=timezone.now())
 
     def __str__(self) -> str:
@@ -36,7 +63,9 @@ class FictionChapter(models.Model):
                             "byFile": "/fiction/imageUPload/",
                             "byUrl": "/fiction/imageUPload/",
                         },
-                        "additionalRequestHeaders": [{"Counter-Type": 'multipart/form-data'}]
+                        "additionalRequestHeaders": [
+                            {"Counter-Type": 'multipart/form-data'}
+                        ]
                     }
                 }
             }

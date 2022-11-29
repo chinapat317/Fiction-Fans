@@ -32,13 +32,15 @@ def fiction_view(request, fiction_id):
     chapters = fiction.fictionchapter_set.all()
     context = {
         "fiction": fiction,
-        "chapters": chapters
+        "chapters": chapters,
+        "cover": fiction.cover_url,
     }
     return render(request, template_name, context=context)
 
 
 @requires_csrf_token
 def upload_image_view(request):
+    """Upload images in chapter content."""
     file_request = request.FILES["image"]
     file_system = FileSystemStorage()
     filename = str(file_request).split(".")[0]
