@@ -12,7 +12,12 @@ class HotPage(generic.ListView):
     context_object_name = "hot_fictions"
 
     def get_queryset(self):
-        return FictionTitle.objects.all()
+        all_fiction = FictionTitle.objects.all()
+        sorted_by_rate = sorted(
+            all_fiction,
+            key= lambda r: r.average_rate_all_chapters()
+        ) 
+        return sorted_by_rate
 
 
 class RecentlyPage(generic.ListView):
