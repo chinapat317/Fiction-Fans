@@ -1,35 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
 {% load socialaccount %}
-<h2>
-    Login
-</h2>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
+<div style="margin: 10px;">
+    <h2 style="font-size: 22px; margin-bottom: 15px;">
+        Login
+    </h2>
+    <body>
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <p style="margin: 10px 0px;">
+                <button type="submit" style="background-color: rgb(255, 255, 255); border-radius: 8px; padding: 3px;">
+                    Login
+                </button>
+                <input type="hidden" name="next" value="{{next}}"/>
+                <button onclick=document.location="{% provider_login_url 'google' %}" style="background-color: rgb(255, 255, 255); border-radius: 8px; padding: 3px; margin-left: 10px;">
+                    Login with Google
+                </button>
+            </p>
+        </form>
+        {# If you have a password_reset template, then add here #}
         <p>
-            <button type="submit">
-                Login
-            </button>
+            <a href="../../signup">
+                <button style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 3px;">
+                    Sign up
+                </button>
+            </a>
+            <a href="{% url 'password_reset' %}" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px; margin-left: 10px;">
+                Forgot password?
+            </a>
         </p>
-        <input type="hidden" name="next" value="{{next}}"/>
-        <button onclick=document.location="{% provider_login_url 'google' %}">
-            Login with Google
-        </button>
-    </form>
-    {# If you have a password_reset template, then add here #}
-    <p>
-        <a href="../../signup">
-            <button>
-                Sign up
-            </button>
-        </a>
-        <a href="{% url 'password_reset' %}">
-            Forgot password?
-        </a>
-    </p>
-</body>
+    </body>
+</div>
 {% endblock content %}
