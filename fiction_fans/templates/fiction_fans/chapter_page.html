@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <div style="padding: 10px; font-size: 22px;">
-    {{ fictionchapter.title }}
+    <a href="{% url 'fiction_fans:fiction_view' fictionchapter.fiction_title_id %}" style="color: azure; margin-left: 10px;">
+        {{ fictionchapter.fiction_title.title }}
+    </a>
+     - {{ fictionchapter.title }}
 </div>
 <div style="word-wrap: break-word; border-radius: 8px; background-color: #ffffff;; padding: 20px; margin: 10px;">
     <section id="chapter-body"></section>
