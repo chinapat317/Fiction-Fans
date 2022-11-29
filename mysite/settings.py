@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY", default="missing-secret-key", cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['fictionfans.azurewebsites.net', '127.0.0.1']
 
@@ -166,6 +166,7 @@ MEDIA_ROOT = BASE_DIR / "images"
 
 MEDIA_URL = "/images/"
 
+<<<<<<< HEAD
 CSRF_TRUSTED_ORIGINS = ["https://*.fictionfans.azurewebsites.net", "https://*.127.0.0.1"]
 
 # Upload files settings
@@ -173,3 +174,6 @@ FILE_UPLOAD_HANDLERS = [
     "django.core.files.uploadhandler.MemoryFileUploadHandler",
     "django.core.files.uploadhandler.TemporaryFileUploadHandler",
 ]
+=======
+CSRF_TRUSTED_ORIGINS = ['https://*.fictionfans.azurewebsites.net','https://*.127.0.0.1']
+>>>>>>> master

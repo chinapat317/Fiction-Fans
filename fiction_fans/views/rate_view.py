@@ -22,6 +22,7 @@ def rate(request, fiction_pk, chapter_pk):
         )
         return HttpResponseRedirect("../../../../accounts/login/")
     chapter = get_object_or_404(FictionChapter, pk=chapter_pk)
+<<<<<<< HEAD:fiction_fans/views/rate_view.py
     point = request.POST.get("point")
     ######################################
     # delete when finish
@@ -29,6 +30,9 @@ def rate(request, fiction_pk, chapter_pk):
     file.write("point = {}".format(point))
     file.close()
     ################################
+=======
+    point = request.POST.get('point')
+>>>>>>> master:fiction_fans/views/rate.py
     try:
         rate = RateModel.objects.get(user=user, chapter=chapter_pk)
         rate.point = point

@@ -18,6 +18,7 @@ def comment(request, fiction_pk, chapter_pk):
         messages.add_message(request, messages.INFO, "Please login before comment.")
         return HttpResponseRedirect("../../../../accounts/login/")
     chapter = get_object_or_404(FictionChapter, pk=chapter_pk)
+<<<<<<< HEAD:fiction_fans/views/comment_view.py
     comment_text = request.POST.get("comment_text")
     #################################################################
     # delete when finish
@@ -25,6 +26,9 @@ def comment(request, fiction_pk, chapter_pk):
     file.write("comment_text = {}".format(request.POST.get("comment_text")))
     file.close()
     ###################################################################
+=======
+    comment_text = request.POST.get('comment_text')
+>>>>>>> master:fiction_fans/views/comment.py
     chapter.comment_set.create(user=user, text=comment_text)
     return HttpResponseRedirect(
         reverse("fiction_fans:chapter_view",
