@@ -29,6 +29,9 @@
     <h1>
         Description: {{ fiction.description }}
     </h1>
+    <h1>
+        Summited Date: {{ fiction.pub_date }}
+    </h1>
 </div>
 {% if user.is_authenticated %}
 {% if fiction.user.get_username == user.get_username %}
