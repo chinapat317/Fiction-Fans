@@ -12,6 +12,14 @@ class HomePage(generic.ListView):
     context_object_name = "fictions"
 
     def get_queryset(self):
-        return FictionTitle.objects.filter(
-            pub_date__lte=timezone.now()
-        ).order_by('-pub_date')[:5]
+        all_fiction = FictionTitle.objects.all()
+        sorted_by_rate = sorted(
+            all_fiction,
+            key=lambda r: r.average_rate_all_chapters(),
+            reverse=True,
+        )
+        query_set = {
+            "hot": sorted_by_rate[:5],
+            "recently": FictionTitle.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5],
+        }
+        return query_set
