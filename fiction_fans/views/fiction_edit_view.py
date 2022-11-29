@@ -4,8 +4,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from ..forms.fiction_form import FictionForm, ChapterForm
 from ..models.fiction_model import FictionTitle, FictionChapter
-# imported not use
-# from . import storage
+from . import storage
 
 # Create your views here.
 
@@ -24,7 +23,12 @@ def edit_fiction(request, fiction_id):
     }
     if request.method == "POST":
         if form.is_valid():
-            form.save()
+            fiction = form.save()
+            if request.POST.get('image') != '':
+                if fiction.cover_pic_name != " ":
+                    storage.delete(fiction.cover_pic_name)
+                fiction.cover_url, fiction.cover_pic_name = storage.upload(request)
+                fiction.save()
             return HttpResponseRedirect("/fiction/{}/".format(fiction.id))
     return render(request, template_name, context=context)
 

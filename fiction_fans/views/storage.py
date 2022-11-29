@@ -1,7 +1,6 @@
 """Storage of uploaded images."""
 import pyrebase
-# imported not use
-# from django.core.files.storage import default_storage
+from django.core.files.storage import default_storage
 
 # Create your views here.
 
@@ -22,9 +21,12 @@ storage = firebase.storage()
 
 def upload(request):
     file = request.FILES["image"]
-    # variable not use
-    # file_save = default_storage.save(file.name, file)
+    save_file = default_storage.save(file.name, file)
     storage.child("images/" + file.name).put("images/" + file.name)
     print("upload success")
     url = storage.child("images/" + file.name).get_url(token=None)
-    return url
+    default_storage.delete(file.name)
+    return url, file.name
+
+def delete(old_cover_name):
+    storage.delete("images/" + old_cover_name, token=None)
