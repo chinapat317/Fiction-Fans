@@ -41,7 +41,7 @@ class FictionTitle(models.Model):
         choices=STATUS_CHOICES,
         default="Ongoing"
     )
-    description = models.CharField(max_length=255, default="")
+    description = models.CharField(max_length=1025, default="")
     pub_date = models.DateTimeField(auto_now_add=timezone.now())
 
     def __str__(self) -> str:
@@ -59,7 +59,7 @@ class FictionTitle(models.Model):
             all_points += chapters.average_rate_each_chapter()
             count += 1
         if count == 0:
-            return 0
+            return 0.0
         return all_points / count
 
 
