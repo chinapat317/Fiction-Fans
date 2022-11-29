@@ -20,13 +20,16 @@ storage = firebase.storage()
 
 
 def upload(request):
+    """Upload image and stored in images directory."""
     file = request.FILES["image"]
     save_file = default_storage.save(file.name, file)
     storage.child("images/" + file.name).put("images/" + file.name)
-    print("upload success")
+    print("upload successful")
     url = storage.child("images/" + file.name).get_url(token=None)
     default_storage.delete(file.name)
     return url, file.name
 
+
 def delete(old_cover_name):
+    """Replace old image by delete old image."""
     storage.delete("images/" + old_cover_name, token=None)
