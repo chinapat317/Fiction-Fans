@@ -7,9 +7,12 @@
         </h1>
     </div>
     {% for fiction in recently_fictions %}
-    <ul style="list-style: none; display: inline-flex; margin: 30px auto; padding: 0px 20px; box-sizing: border-box; width: 196px; border-radius: 8px; background-color: white;">
+    <ul style="list-style: none; display: inline-flex; margin: 30px auto; padding: 1%; box-sizing: border-box; width: 196px; border-radius: 8px; background-color: white;">
         <li>
             <a href="{% url 'fiction_fans:fiction_view' fiction.id %}" style="color: black; text-decoration: none;">
+                <div style="width: 170px; height: 230px; float: left; margin: 10px;">
+                    <img src="{{ fiction.cover_url }}">
+                </div>
                 {{ fiction.title }}
             </a>
         </li>
