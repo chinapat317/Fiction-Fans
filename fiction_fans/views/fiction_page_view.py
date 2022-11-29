@@ -1,5 +1,5 @@
 """Create view for reading fiction's story."""
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
@@ -28,7 +28,7 @@ class ChapterView(generic.DetailView):
 def fiction_view(request, fiction_id):
     """Create view of fiction for show fiction's title and list of episode."""
     template_name = "fiction_fans/fiction_page.html"
-    fiction = FictionTitle.objects.get(id=fiction_id)
+    fiction = get_object_or_404(FictionTitle, id=fiction_id)
     chapters = fiction.fictionchapter_set.all()
     context = {
         "fiction": fiction,
