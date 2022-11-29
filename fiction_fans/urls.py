@@ -14,6 +14,7 @@ from .views import (
     delete_chapter,
     delete_fiction,
     comment,
+    rate,
     upload_image_view,
 )
 
@@ -65,6 +66,12 @@ urlpatterns = [
     path("hot/", HotPage.as_view(), name="hot_index"),
 
     path("recently/", RecentlyPage.as_view(), name="recently_index"),
+
+    path(
+        "<int:fiction_pk>/<int:chapter_pk>/rate/",
+        rate,
+        name="rate_chapter"
+    ),
 
     path("imageUPload/", csrf_exempt(upload_image_view)),
 ]
