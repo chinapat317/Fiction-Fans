@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY", default="missing-secret-key", cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['fictionfans.azurewebsites.net', '127.0.0.1']
 
@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "fiction_fans.apps.FictionFansConfig",
     "django_editorjs",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
 ]
 
 MIDDLEWARE = [
@@ -75,13 +80,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 AUTHENTICATION_BACKENDS = [
-    # username/password authentication
-    'django.contrib.auth.backends.ModelBackend'
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+SITE_ID = 2
 
 LOGIN_REDIRECT_URL = "/fiction/"
 
 LOGOUT_REDIRECT_URL = "/fiction/"
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    }
+}
 
 
 # Database
@@ -130,18 +149,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATIC_DIR = 'static/'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
+STATIC_ROOT = BASE_DIR / 'static'
+
+STATIC_DIR = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = "/fiction/media/"
+MEDIA_ROOT = BASE_DIR / "images"
 
-MEDIA_URL = "/fiction/media/"
+MEDIA_URL = "/images/"
 
 CSRF_TRUSTED_ORIGINS = ['https://*.fictionfans.azurewebsites.net','https://*.127.0.0.1']

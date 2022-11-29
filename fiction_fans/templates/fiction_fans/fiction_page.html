@@ -1,51 +1,79 @@
 {% extends "base.html" %}
 {% block content %}
 <div style="padding: 10px;">
-    {{ fiction.title }}
     <div style="float: right;">
-        <a href="{% url 'fiction_fans:profile' %}" style="margin-left: 10px;">
-            username
-        </a>
+        <h1>
+            Contributor: {{ fiction.user.get_username }}
+        </h1>
     </div>
+    <h1 style="font-size: 22px;">
+        {{ fiction.title }}
+    </h1>
 </div>
-<div style="border: solid; padding: 20px;">
-    <h1>Title:  {{ fiction.title }}</h1>
-    <h1>Author:  {{ fiction.author }}</h1>
-    <h1>Status:  {{ fiction.status }}</h1>
-    <h1>Description:  {{ fiction.description }}</h1>
+<div style="width: 199px; height: 230px; float: left; margin: 10px 20px 0px 10px; overflow: auto;">
+    <img src="{{ cover }}">
+</div>
+<div style="padding: 20px; background-color: rgb(255, 255, 255); border-radius: 8px; margin: 10px 10px 0px 10px; height: 230px;">
+    <h1>
+        Title: {{ fiction.title }}
+    </h1>
+    <h1>
+        Author: {{ fiction.author }}
+    </h1>
+    <h1>
+        Translator: {{ fiction.translator }}
+    </h1>
+    <h1>
+        Status: {{ fiction.status }}
+    </h1>
+    <h1>
+        Rate: {{ fiction.average_rate_all_chapters }} / 5.0
+    </h1>
+    <h1>
+        Description: {{ fiction.description }}
+    </h1>
+    <h1>
+        Summited Date: {{ fiction.pub_date }}
+    </h1>
 </div>
 {% if user.is_authenticated %}
+{% if fiction.user.get_username == user.get_username %}
 <div style="float: right; margin: 10px;">
-    <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}" style="margin-right: 10px; border: solid;">
+    <a href="{% url 'fiction_fans:fiction_edit' fiction.id %}" style="margin-right: 10px; background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
         Edit
     </a>
-    <a href="{% url 'fiction_fans:fiction_del' fiction.id %}" style="border: solid;">
+    <a href="{% url 'fiction_fans:fiction_del' fiction.id %}" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
         Delete
     </a>
 </div>
 {% endif %}
-<div style="padding: 10px; margin-top: 50px; margin-bottom: auto;">
-    Chapter List
+{% endif %}
+<div style="padding: 10px; margin-top: 30px; margin-bottom: auto;">
+    Chapter List 
 </div>
-<div style="border: solid; padding: 20px;">
+<div style="background-color: rgb(255, 255, 255); border-radius: 8px; margin: 10px 10px 0px 10px;; padding: 20px;">
     <ol>
         {% for chapter in chapters %}
         <li>
             <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
                 {{ chapter.title }}
             </a>
-                {% if chapter.average_rate %}
-                    <label>(point = {{ chapter.average_rate }})</label>
-                {% endif %}
+            {% if chapter.average_rate_each_chapter %}
+            <label style="float: right;">
+                {{ chapter.average_rate_each_chapter }} / 5.0
+            </label>
+            {% endif %}
         </li>
         {% endfor %}
     </ol>
 </div>
 {% if user.is_authenticated %}
-    <div style="float: right; margin: 10px;">
-        <a href="{% url 'fiction_fans:chapter_create' fiction.id %}" style="border: solid;">
-            Create
-        </a>
-    </div>
+{% if fiction.user.get_username == user.get_username %}
+<div style="float: right; margin: 10px;">
+    <a href="{% url 'fiction_fans:chapter_create' fiction.id %}" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
+        Create
+    </a>
+</div>
+{% endif %}
 {% endif %}
 {% endblock content %}

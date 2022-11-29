@@ -12,28 +12,42 @@
     </head>
     <nav>
         <div class="logo">
-            <a href="{% url 'fiction_fans:homepage' %}">Fiction Fans</a>
+            <a href="{% url 'fiction_fans:homepage' %}">
+                Fiction Fans
+            </a>
         </div>
         <div class="home">
-            <a href="{% url 'fiction_fans:homepage' %}">Home</a>
+            <a href="{% url 'fiction_fans:homepage' %}">
+                Home
+            </a>
         </div>
         {% if user.is_authenticated %}
-            <div class="auth">
-                <a href="{% url 'fiction_fans:profile' %}">{{ user.get_username }}</a>
-                <a href="/accounts/logout/"><button type="button">Logout</button></a>
-            </div>
-            {% else %}
-                <div class="auth">
-                    <a href="{% url 'login' %}">Login</a>
-                    <a href="{% url 'signup' %}">Register</a>
-                </div>
+        <div class="auth">
+            <a href="{% url 'fiction_fans:profile' %}">
+                {{ user.get_username }}
+            </a>
+            <a href="/accounts/logout/">
+                <button type="button">
+                    Logout
+                </button>
+            </a>
+        </div>
+        {% else %}
+        <div class="auth">
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+            <a href="{% url 'signup' %}">
+                Register
+            </a>
+        </div>
         {% endif %}
     </nav>
     <body>
-            <div id="content">
-                <div>
-                    {% block content %}{% endblock content %}
-                </div>
+        <div id="content">
+            <div>
+                {% block content %}{% endblock content %}
             </div>
+        </div>
     </body>
 </html>
