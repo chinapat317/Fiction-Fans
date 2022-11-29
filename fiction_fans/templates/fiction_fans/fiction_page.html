@@ -27,6 +27,9 @@
         Status: {{ fiction.status }}
     </h1>
     <h1>
+        Rate: {{ fiction.average_rate_all_chapters }} / 5.0
+    </h1>
+    <h1>
         Description: {{ fiction.description }}
     </h1>
     <h1>
@@ -55,9 +58,9 @@
             <a href="{% url 'fiction_fans:chapter_view' fiction.id chapter.id %}">
                 {{ chapter.title }}
             </a>
-            {% if chapter.average_rate %}
-            <label>
-                (point = {{ chapter.average_rate }})
+            {% if chapter.average_rate_each_chapter %}
+            <label style="float: right;">
+                {{ chapter.average_rate_each_chapter }} / 5.0
             </label>
             {% endif %}
         </li>
