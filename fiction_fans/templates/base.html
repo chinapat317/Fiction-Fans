@@ -50,7 +50,7 @@
                 font-family: Marker Felt;
             }
 
-            img {
+            .image-logo img {
                 height: 30px;
                 width: 30px;
             }
@@ -99,7 +99,7 @@
             </a>
         </div>
         {% if user.is_authenticated %}
-        <a href="{% url 'fiction_fans:profile' %}">
+        <a class="image-logo" href="{% url 'fiction_fans:profile' %}">
             <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
         </a>
         <div class="auth">
