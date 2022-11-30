@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY", default="missing-secret-key", cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['fictionfans.azurewebsites.net', '127.0.0.1']
 
@@ -84,11 +84,12 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SITE_ID = 2
 
 LOGIN_REDIRECT_URL = "/fiction/"
 
 LOGOUT_REDIRECT_URL = "/fiction/"
+
+SITE_ID = 2
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
