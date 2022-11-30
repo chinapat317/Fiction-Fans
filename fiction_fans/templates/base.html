@@ -23,11 +23,13 @@
                 padding: 15px;
                 height: 80px;
                 margin: 0px;
+                box-shadow: 5px 10px;
             }
 
             .logo {
                 font-family: Marker Felt;
                 font-size: 40px;
+                font-weight: bold;
                 margin: 30px; 
                 margin-right: auto;
             }
@@ -38,13 +40,19 @@
             }
 
             .home {
-                font-size: 20px;
+                font-size: 25px;
                 margin-right: auto;
             }
 
             .home a {
                 color: black;
                 text-decoration: none;
+                font-family: Marker Felt;
+            }
+
+            img {
+                height: 30px;
+                width: 30px;
             }
 
             .auth a {
@@ -56,6 +64,11 @@
                 padding: 5px;
                 margin: 10px;
                 color: black;
+            }
+
+            .auth a:hover {
+                background: rgb(151, 151, 151);
+                
             }
 
             .flex-container {
@@ -70,6 +83,7 @@
                 overflow: auto;
                 margin: 5% 15%;
                 padding: 20px;
+                box-shadow: 5px 10px;
             }
         </style>
     </head>
@@ -85,6 +99,9 @@
             </a>
         </div>
         {% if user.is_authenticated %}
+        <a href="{% url 'fiction_fans:profile' %}">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+        </a>
         <div class="auth">
             <a href="{% url 'fiction_fans:profile' %}">
                 {{ user.get_username }}
