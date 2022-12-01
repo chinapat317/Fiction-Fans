@@ -64,6 +64,8 @@
 </div>
 {% endif %}
 {% endif %}
+{% if user.is_authenticated %}
+{% if fictionchapter.fiction_title.user.get_username != user.get_username %}
 <div style="margin-left: 20px; padding: 20px;">
     <form action="{% url 'fiction_fans:rate_chapter' fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
         {% csrf_token %}
@@ -111,6 +113,8 @@
         <input type="submit" value="Rate" style="background-color: rgb(198, 255, 251); border-radius: 8px; padding: 5px;">
     </form>
 </div>
+{% endif %}
+{% endif %}
 <div style="padding: 10px 10px 10px 17.5px;">
     <form action="{% url 'fiction_fans:chapter_comment'  fictionchapter.fiction_title_id fictionchapter.id %}" method="post">
         {% csrf_token %}
